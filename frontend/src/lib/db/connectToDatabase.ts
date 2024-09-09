@@ -4,18 +4,19 @@ let cachedClient: MongoClient | null = null;
 let cachedDb: Db | null = null;
 
 export async function connectToDatabase() {
-  console.log("client", cachedClient, cachedDb, process.env.MONGO_URI);
+  const url = process.env.MONGO_URI;
+  const databaseName = process.env.MONGO_DB_NAME;
 
-  if ((cachedClient && cachedDb) || !process.env.MONGO_URI) {
+  if ((cachedClient && cachedDb) || !url) {
     // Если клиент и база данных уже закешированы, возвращаем их
     return { client: cachedClient, db: cachedDb };
   }
 
   try {
     // Иначе создаем новое соединение
-    const client = await MongoClient.connect(process.env.MONGO_URI);
+    const client = await MongoClient.connect(url);
 
-    const db = client.db("mydb");
+    const db = client.db(databaseName);
 
     // Сохраняем клиент и базу данных в кеш
     cachedClient = client;
@@ -28,3 +29,16 @@ export async function connectToDatabase() {
     return { client: cachedClient, db: cachedDb };
   }
 }
+
+// Отключение от базы данных при завершении приложения
+async function closeDatabaseConnection() {
+  const { client } = await connectToDatabase();
+
+  if (client) {
+    client.close();
+  }
+}
+
+// Обработка сигналов завершения
+process.on("SIGINT", closeDatabaseConnection);
+process.on("SIGTERM", closeDatabaseConnection);

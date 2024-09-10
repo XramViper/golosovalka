@@ -29,6 +29,27 @@ export async function connectToDatabase() {
     return { client: cachedClient, db: cachedDb };
   }
 }
+export async function connectClientPromise() {
+  const url = process.env.MONGO_URI;
+
+  if ((cachedClient && cachedDb) || !url) {
+    return cachedClient;
+  }
+
+  try {
+    // Иначе создаем новое соединение
+    const client = await MongoClient.connect(url);
+
+    // Сохраняем клиент и базу данных в кеш
+    cachedClient = client;
+
+    return client;
+  } catch (error) {
+    console.log("error", error);
+
+    return cachedClient;
+  }
+}
 
 // Отключение от базы данных при завершении приложения
 async function closeDatabaseConnection() {

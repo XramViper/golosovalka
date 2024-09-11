@@ -3,7 +3,7 @@ import NextAuth, { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import { connectClientPromise } from "@/lib/db/connectToDatabase";
+import { connectClientPromise } from "@/shared/lib";
 
 import { MongoClient } from "mongodb";
 

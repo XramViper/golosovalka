@@ -27,6 +27,6 @@
     "./src/**/*.ts",
     "./src/**/*.tsx",
     ".next/types/**/*.ts"
-, "src/shared/lib/db/mongoose.js"  ],
+, "src/shared/server/db/mongoose.js"  ],
   "exclude": ["node_modules"]
 }

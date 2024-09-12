@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getUserSession } from "@/shared/server";
+import { NextResponse } from "next/server";
+import { getUserInfo } from "./_realization";
 
-export async function GET(req: NextRequest) {
-  const userInfo = await getUserSession(req);
+export async function GET() {
+  const userInfo = await getUserInfo();
 
   if (userInfo) {
     return NextResponse.json({ status: 200, userInfo });

@@ -5,12 +5,10 @@ import { useUserInfoQuery } from "@/entities/user/actions/useUserInfoQuery";
 import { BackButton, FeedbackButton, Logo } from "@/shared";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import React, { FC } from "react";
+import React from "react";
 
-type Props = {};
-
-export const Header: FC<Props> = (props) => {
-  const { data, refetch, isFetching } = useUserInfoQuery();
+export const Header = () => {
+  const { data } = useUserInfoQuery();
 
   const pathname = usePathname();
 
@@ -26,7 +24,7 @@ export const Header: FC<Props> = (props) => {
     <>
       <Logo />
       <div className="ml-auto">
-        <UserAvatar displayName={data?.displayName || "123"} />
+        <UserAvatar displayName={data?.displayName} />
       </div>
     </>
   );
@@ -50,7 +48,7 @@ export const Header: FC<Props> = (props) => {
     headerContent = (
       <>
         <div className="mr-auto">
-          <UserAvatar displayName="123" />
+          <UserAvatar displayName={data?.displayName} />
         </div>
         <FeedbackButton />
       </>
@@ -80,9 +78,6 @@ export const Header: FC<Props> = (props) => {
       })}
     >
       <div className="max-w-5xl py-3 max-lg:px-4 mx-auto flex gap-4">
-        <button disabled={isFetching} onClick={() => refetch()}>
-          {isFetching ? "check new info" : "refetch"}
-        </button>
         {headerContent}
       </div>
     </header>

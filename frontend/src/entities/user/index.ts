@@ -1,2 +1,2 @@
 export * from "./ui";
-export * from "./actions/fetchUserInfo";
+export * from "./actions/getUserInfo";

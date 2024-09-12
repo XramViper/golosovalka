@@ -15,15 +15,14 @@ export const authOptions: AuthOptions = {
     }),
     EmailProvider({
       server: {
-        host: process.env.SMTP_SERVER_HOST,
-        port: process.env.SMTP_SERVER_PORT,
-        secure: true,
+        host: "connect.smtp.bz" || process.env.SMTP_SERVER_HOST,
+        port: 2525 || process.env.SMTP_SERVER_PORT,
         auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASSWORD, // Пароль от почты или специальный пароль для приложений
+          user: "danyalavra@gmail.com" || process.env.SMTP_USER,
+          pass: "XBuR4bVksz6I" || process.env.SMTP_PASSWORD, // Пароль от почты или специальный пароль для приложений
         },
       },
-      from: process.env.SMTP_SENDER_FROM,
+      from: "check@xram-viper.ru" || process.env.SMTP_SENDER_FROM,
     }),
   ],
   pages: {

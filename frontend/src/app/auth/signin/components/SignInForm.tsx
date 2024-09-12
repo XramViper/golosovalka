@@ -20,7 +20,7 @@ export const SignInForm = () => {
 
     const response = await signIn("email", {
       email,
-      redirect: false, // Оставляем false, чтобы не перенаправляться сразу
+      redirect: false,
     });
 
     if (response?.error) {
@@ -30,7 +30,7 @@ export const SignInForm = () => {
     }
 
     if (response?.url) {
-      router.push("/profile");
+      router.push("/dashboard");
     }
   };
 

@@ -1,15 +1,20 @@
 "use client";
 
-import { BackButton, FeedbackButton, Logo, UserAvatar } from "@/shared";
+import { UserAvatar } from "@/entities";
+import { useUserInfoQuery } from "@/entities/user/actions/useUserInfoQuery";
+import { BackButton, FeedbackButton, Logo } from "@/shared";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { FC } from "react";
 
-export const Header = () => {
+type Props = {};
+
+export const Header: FC<Props> = (props) => {
+  const { data, refetch, isFetching } = useUserInfoQuery();
+
   const pathname = usePathname();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, firstLevelRoute, firstLevelId, secondLevelRoute, secondLevelId] =
+  const [, firstLevelRoute, firstLevelId, , secondLevelId] =
     pathname.split("/");
 
   // TODO: get board name
@@ -21,7 +26,7 @@ export const Header = () => {
     <>
       <Logo />
       <div className="ml-auto">
-        <UserAvatar />
+        <UserAvatar displayName={data?.displayName || "123"} />
       </div>
     </>
   );
@@ -45,7 +50,7 @@ export const Header = () => {
     headerContent = (
       <>
         <div className="mr-auto">
-          <UserAvatar />
+          <UserAvatar displayName="123" />
         </div>
         <FeedbackButton />
       </>
@@ -75,6 +80,9 @@ export const Header = () => {
       })}
     >
       <div className="max-w-5xl py-3 max-lg:px-4 mx-auto flex gap-4">
+        <button disabled={isFetching} onClick={() => refetch()}>
+          {isFetching ? "check new info" : "refetch"}
+        </button>
         {headerContent}
       </div>
     </header>

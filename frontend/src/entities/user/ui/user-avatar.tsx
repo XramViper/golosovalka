@@ -1,13 +1,16 @@
-"use client";
+"use client"
 
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 
-export const UserAvatar = () => {
-  const pathname = usePathname();
+interface UserAvatarProps {
+  displayName: string; // Replace 'string' with the actual type of the user object
+}
 
-  const [_, firstLevelRoute, firstLevelId, secondLevelRoute, secondLevelId] =
-    pathname.split("/");
+export const UserAvatar = (props: UserAvatarProps) => {
+  const { displayName } = props;
+  const pathname = usePathname();
+  const [, firstLevelRoute] = pathname.split("/");
 
   const isDashboard = firstLevelRoute === "dashboard";
 
@@ -21,7 +24,7 @@ export const UserAvatar = () => {
           data-headlessui-state=""
           id="headlessui-popover-button-:r0:"
         >
-          Даниил
+          {displayName}
         </button>
       </a>
     );
@@ -36,7 +39,7 @@ export const UserAvatar = () => {
         data-headlessui-state=""
         id="headlessui-popover-button-:r0:"
       >
-        Даниил
+        {displayName}
         <ChevronDownIcon
           strokeWidth={3}
           className="w-4 h-4 duration-200 opacity-50"

@@ -1,8 +1,8 @@
 import { getToken, JWT } from "next-auth/jwt";
 import { NextRequest } from "next/server";
 
-type UserInfo = {
-  displayName: string;
+export type UserInfo = {
+  displayName?: string;
   picture: string | null;
   name: JWT["name"];
   email: JWT["email"];

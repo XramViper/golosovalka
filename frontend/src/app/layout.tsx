@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/features";
 import clsx from "clsx";
+import Providers from "@/config/Providers";
 
 const font = Inter({
   subsets: ["latin"],
@@ -22,10 +23,12 @@ export default function RootLayout({
   return (
     <html data-theme="light" lang="ru">
       <body className={clsx(font.className)}>
-        <div className="bg-base-200">
-          <Header />
-          {children}
-        </div>
+        <Providers>
+          <div className="bg-base-200">
+            <Header />
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   );

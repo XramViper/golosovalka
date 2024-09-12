@@ -1,5 +1,3 @@
-"use client";
-
 import { ChevronUpIcon } from "@heroicons/react/24/outline";
 import { Post } from "../model";
 import { MouseEvent } from "react";

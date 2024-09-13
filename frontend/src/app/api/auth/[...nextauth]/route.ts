@@ -1,4 +1,3 @@
-// app/api/auth/[...nextauth]/route.js
 import NextAuth, { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
@@ -14,32 +13,14 @@ export const authOptions: AuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-      // @ts-expect-error logo is already defined
-      style: {
-        bg: "transparent",
-        bgDark: "#20252a",
-        text: "#fff",
-      },
     }),
     Yandex({
       clientId: process.env.YANDEX_CLIENT_ID || "",
       clientSecret: process.env.YANDEX_CLIENT_SECRET || "",
-      // @ts-expect-error logo is already defined
-      style: {
-        bg: "transparent",
-        bgDark: "#20252a",
-        text: "#fff",
-      },
     }),
     VK({
       clientId: process.env.VK_CLIENT_ID || "",
       clientSecret: process.env.VK_CLIENT_SECRET || "",
-      // @ts-expect-error logo is already defined
-      style: {
-        bg: `transparent`,
-        bgDark: "#20252a",
-        text: "#fff",
-      },
     }),
     EmailProvider({
       server: {

@@ -1,10 +1,24 @@
 "use client";
 
 import { Logo } from "@/shared";
-import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Page() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
+
+  const { status: sessionStatus } = useSession();
+  const isAuthorized = sessionStatus === "authenticated";
+
+  useEffect(() => {
+    if (callbackUrl && isAuthorized) {
+      router.push(callbackUrl);
+    }
+  }, [isAuthorized, callbackUrl, router]);
+
   const [email, setEmail] = useState("");
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {

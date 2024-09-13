@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html data-theme="light" lang="ru">
+    <html data-theme="dark" lang="ru">
       <body className={clsx(font.className)}>
         <Providers>
           <div className="bg-base-200">

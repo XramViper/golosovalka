@@ -6,6 +6,8 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import { connectClientPromise } from "@/shared/server";
 
 import { MongoClient } from "mongodb";
+import Yandex from "next-auth/providers/yandex";
+import VK from "next-auth/providers/vk";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -13,21 +15,26 @@ export const authOptions: AuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
+    Yandex({
+      clientId: process.env.YANDEX_CLIENT_ID || "",
+      clientSecret: process.env.YANDEX_CLIENT_SECRET || "",
+    }),
+    VK({
+      clientId: process.env.VK_CLIENT_ID || "",
+      clientSecret: process.env.VK_CLIENT_SECRET || "",
+    }),
     EmailProvider({
       server: {
-        host: "connect.smtp.bz" || process.env.SMTP_SERVER_HOST,
-        port: 2525 || process.env.SMTP_SERVER_PORT,
+        host: process.env.SMTP_SERVER_HOST,
+        port: process.env.SMTP_SERVER_PORT,
         auth: {
-          user: "danyalavra@gmail.com" || process.env.SMTP_USER,
-          pass: "XBuR4bVksz6I" || process.env.SMTP_PASSWORD, // Пароль от почты или специальный пароль для приложений
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASSWORD,
         },
       },
-      from: "check@xram-viper.ru" || process.env.SMTP_SENDER_FROM,
+      from: process.env.SMTP_SENDER_FROM,
     }),
   ],
-  pages: {
-    signIn: "/auth/signin",
-  },
   session: {
     strategy: "jwt",
   },

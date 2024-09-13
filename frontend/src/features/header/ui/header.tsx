@@ -1,19 +1,20 @@
 "use client";
 
 import { UserAvatar } from "@/entities";
-import { useUserInfoQuery } from "@/entities/user/actions/useUserInfoQuery";
 import { BackButton, FeedbackButton, Logo } from "@/shared";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import React from "react";
 
 export const Header = () => {
-  const { data } = useUserInfoQuery();
-
   const pathname = usePathname();
 
   const [, firstLevelRoute, firstLevelId, , secondLevelId] =
     pathname.split("/");
+
+  if (firstLevelRoute === "auth") {
+    return null;
+  }
 
   // TODO: get board name
   const boardName = firstLevelId;
@@ -24,7 +25,7 @@ export const Header = () => {
     <>
       <Logo />
       <div className="ml-auto">
-        <UserAvatar displayName={data?.displayName} />
+        <UserAvatar />
       </div>
     </>
   );
@@ -48,7 +49,7 @@ export const Header = () => {
     headerContent = (
       <>
         <div className="mr-auto">
-          <UserAvatar displayName={data?.displayName} />
+          <UserAvatar />
         </div>
         <FeedbackButton />
       </>

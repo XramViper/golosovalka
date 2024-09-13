@@ -14,14 +14,32 @@ export const authOptions: AuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      // @ts-expect-error logo is already defined
+      style: {
+        bg: "transparent",
+        bgDark: "#20252a",
+        text: "#fff",
+      },
     }),
     Yandex({
       clientId: process.env.YANDEX_CLIENT_ID || "",
       clientSecret: process.env.YANDEX_CLIENT_SECRET || "",
+      // @ts-expect-error logo is already defined
+      style: {
+        bg: "transparent",
+        bgDark: "#20252a",
+        text: "#fff",
+      },
     }),
     VK({
       clientId: process.env.VK_CLIENT_ID || "",
       clientSecret: process.env.VK_CLIENT_SECRET || "",
+      // @ts-expect-error logo is already defined
+      style: {
+        bg: `transparent`,
+        bgDark: "#20252a",
+        text: "#fff",
+      },
     }),
     EmailProvider({
       server: {
@@ -39,6 +57,15 @@ export const authOptions: AuthOptions = {
     strategy: "jwt",
   },
 
+  pages: {
+    signIn: "/auth/signin",
+    verifyRequest: "/auth/verify-request",
+  },
+
+  theme: {
+    colorScheme: "dark",
+    brandColor: "trasnsparent",
+  },
   // @ts-expect-error some shit
   adapter: MongoDBAdapter(
     connectClientPromise as unknown as Promise<MongoClient>

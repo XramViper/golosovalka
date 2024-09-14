@@ -1,9 +1,8 @@
-import { User } from "../../../model/User";
 import { Response } from "./response";
 
-export const actionApi = async (): Promise<User | undefined> => {
+export const actionApi = async (): Promise<Response> => {
   const res = await fetch("/api/me");
-  const { userInfo } = (await res.json()) as { userInfo: Response };
+  const { data: userInfo } = (await res.json()) as { data: Response };
 
   if (!userInfo) {
     return;

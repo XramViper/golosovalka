@@ -5,7 +5,7 @@ export async function GET() {
   const userInfo = await getUserInfo();
 
   if (userInfo) {
-    return NextResponse.json({ status: 200, userInfo });
+    return NextResponse.json({ status: 200, data: userInfo });
   }
 
   return NextResponse.json({ status: 401 });

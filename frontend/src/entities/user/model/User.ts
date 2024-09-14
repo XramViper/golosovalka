@@ -1,8 +1,17 @@
-import { JWT } from "next-auth/jwt";
+import mongoose from "mongoose";
 
-export type User = {
-  displayName?: string;
-  picture: string | null;
-  name: JWT["name"];
-  email: JWT["email"];
-};
+const UserSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+});
+
+const User = mongoose.models?.User || mongoose.model("User", UserSchema);
+
+export default User;

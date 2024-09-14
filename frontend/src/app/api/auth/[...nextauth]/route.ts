@@ -2,11 +2,9 @@ import NextAuth, { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import { connectClientPromise } from "@/shared/server";
-
-import { MongoClient } from "mongodb";
 import Yandex from "next-auth/providers/yandex";
 import VK from "next-auth/providers/vk";
+import connectMongoDb from "@/shared/server/db/connectMongoDb";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -47,10 +45,11 @@ export const authOptions: AuthOptions = {
     colorScheme: "dark",
     brandColor: "trasnsparent",
   },
-  // @ts-expect-error some shit
-  adapter: MongoDBAdapter(
-    connectClientPromise as unknown as Promise<MongoClient>
-  ),
+
+  // @ts-expect-error asaasdƒ
+  adapter: MongoDBAdapter(connectMongoDb, {
+    databaseName: process.env.MONGO_DB_NAME,
+  }),
   secret: process.env.NEXTAUTH_SECRET || "",
 };
 

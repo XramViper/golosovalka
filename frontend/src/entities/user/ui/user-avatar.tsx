@@ -5,9 +5,9 @@ import {
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
-import { useUserInfoQuery } from "../actions";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useSignOutMutation } from "@/entities/session";
+import { useUserInfoQuery } from "../api";
 
 export const UserAvatar = () => {
   const { data: userInfo } = useUserInfoQuery();

@@ -1,8 +1,8 @@
 import { QueryClient } from "@tanstack/react-query";
+import { getUserInfo } from "../realization";
 import { getUserInfoQueryKey } from "./getUserInfoQueryKey";
-import { getUserInfo } from "@/app/api/me/_realization";
 
-export const prefetchUserInfo = async (queryClient: QueryClient) => {
+export const prefetchUserInfoQuery = async (queryClient: QueryClient) => {
   await queryClient.prefetchQuery({
     queryKey: getUserInfoQueryKey(),
     queryFn: getUserInfo,

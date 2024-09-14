@@ -1,7 +1,8 @@
+"use client"
+
 import { UpvoteButton } from "@/entities/post/ui/upvote-button";
 import { AddCommentForm, SignInModal } from "@/features";
 import { CommentsList } from "@/features/comments-list";
-import { ChevronUpIcon } from "@heroicons/react/24/outline";
 
 const examplePost = {
   id: "1",

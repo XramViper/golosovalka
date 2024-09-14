@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
-import { AuthMeResponse } from "./getUserInfo.types";
+import { Response } from "./response";
 
-export const getUserInfoServer = async (): Promise<AuthMeResponse> => {
+export const actionServer = async (): Promise<Response> => {
   const res = await getServerSession();
 
   // Not Authorizd

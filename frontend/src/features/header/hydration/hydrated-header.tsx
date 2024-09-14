@@ -4,13 +4,12 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import { Header } from "../ui/header";
-
-import { prefetchUserInfo } from "@/entities/user/actions";
+import { prefetchUserInfoQuery } from "@/entities/user/api";
 
 export async function HydratedHeader() {
   const queryClient = new QueryClient();
 
-  await prefetchUserInfo(queryClient);
+  await prefetchUserInfoQuery(queryClient);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

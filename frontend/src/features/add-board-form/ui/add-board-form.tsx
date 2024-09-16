@@ -3,7 +3,14 @@
 import { useBoardCreateMutation } from "@/entities/board/api";
 
 export function AddBoardForm() {
-  const { mutate } = useBoardCreateMutation();
+  const { mutate, isPending } = useBoardCreateMutation({
+    onSuccess: clearForm,
+  });
+
+  function clearForm() {
+    const form = document.querySelector("form") as HTMLFormElement;
+    form.reset();
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,7 +45,11 @@ export function AddBoardForm() {
             />
           </div>
           <div className="space-y-2">
-            <button className="btn btn-primary group w-full" type="submit">
+            <button
+              disabled={isPending}
+              className="btn btn-primary group w-full"
+              type="submit"
+            >
               Создать доску
             </button>
           </div>

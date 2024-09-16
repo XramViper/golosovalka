@@ -20,7 +20,10 @@ export const actionServer = async (): Promise<Response> => {
     const boards = await Board.find({ creator: user._id });
     return {
       status: 200,
-      data: boards,
+      data: boards.map((board) => ({
+        id: board._id,
+        title: board.title,
+      })),
     };
   } catch (error) {
     return {

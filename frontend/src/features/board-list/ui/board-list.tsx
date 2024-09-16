@@ -1,11 +1,9 @@
-import { Board } from "@/entities";
+"use client";
 
-type BoardListProps = {
-  boards: Board[];
-};
+import { useBoardsListQuery } from "@/entities/board/api";
 
-export function BoardList(props: BoardListProps) {
-  const { boards = [] } = props;
+export function BoardList() {
+  const { data: boards = [] } = useBoardsListQuery();
 
   return (
     <div className="space-y-6 col-span-full md:col-span-4">
@@ -20,7 +18,7 @@ export function BoardList(props: BoardListProps) {
               href={`/dashboard/${board.id}`}
             >
               <div className="space-y-2">
-                <p className="font-bold">{board.name}</p>
+                <p className="font-bold">{board.title}</p>
               </div>
             </a>
           </li>

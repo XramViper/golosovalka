@@ -1,1 +1,1 @@
-export * from "./ui/board-list";
+export { BoardListHydrated as BoardList } from "./ui/board-list-hydrated";

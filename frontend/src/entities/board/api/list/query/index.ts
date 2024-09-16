@@ -1,3 +1,3 @@
 export * from "./getBoardsListQueryKey";
-export * from "./prefetchUserInfoQuery";
-export * from "./useUserInfoQuery";
+export * from "./prefetchBoardsListQuery";
+export * from "./useBoardsListQuery";

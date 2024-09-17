@@ -5,7 +5,7 @@ import { createBoard } from "../action";
 
 import { showErrorNotification } from "@/shared/api/showErrorNotification";
 import { getCreateBoardMutationKey } from "./key";
-import { getBoardsListQueryKey } from "../../list/query/key";
+import { getBoardsListQueryKey } from "../../list";
 
 type Options = {
   onSuccess?: () => void;

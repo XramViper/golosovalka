@@ -4,8 +4,8 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import React from "react";
-import { prefetchBoardsListQuery } from "@/entities/board/api";
 import { BoardList } from "./board-list";
+import { prefetchBoardsListQuery } from "@/entities/board/api";
 
 export async function BoardListHydrated() {
   const queryClient = new QueryClient();

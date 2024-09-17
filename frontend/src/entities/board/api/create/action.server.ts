@@ -94,5 +94,7 @@ function translit(str: string): string {
     .toLowerCase()
     .split("")
     .map((char) => translitMap[char] || char)
-    .join("");
+    .join("")
+    .replace(/[^a-z0-9\s-]/g, "") // Remove unwanted characters
+    .replace(/\s+/g, "-"); // Replace spaces with hyphens
 }

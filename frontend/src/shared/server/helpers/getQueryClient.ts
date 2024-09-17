@@ -2,7 +2,9 @@ import {
   isServer,
   QueryClient,
   defaultShouldDehydrateQuery,
+  QueryCache,
 } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 function makeQueryClient() {
   return new QueryClient({
@@ -17,6 +19,11 @@ function makeQueryClient() {
           query.state.status === "pending",
       },
     },
+    queryCache: new QueryCache({
+      onError: (error) => {
+        toast(`Something went wrong: ${error.message}`);
+      },
+    }),
   });
 }
 

@@ -3,7 +3,7 @@
 import { useBoardsListQuery } from "@/entities/board/api";
 
 export function BoardList() {
-  const { data: responseData } = useBoardsListQuery();
+  const { data: responseData, isPending } = useBoardsListQuery();
 
   if (!responseData) {
     return null;
@@ -16,7 +16,10 @@ export function BoardList() {
       <h1 className="font-extrabold text-lg md:text-xl">
         {boards?.length} доски
       </h1>
-      <ul className="grid md:grid-cols-2 gap-4">
+      <ul
+        style={{ opacity: isPending ? 0.5 : 1 }}
+        className="grid md:grid-cols-2 gap-4"
+      >
         {boards?.map((board, index) => (
           <li key={index}>
             <a

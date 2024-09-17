@@ -1,11 +1,11 @@
 import { ResponseHttp } from "@/shared";
 
-export type Response =
-  | ResponseHttp<{
-      id: string;
-      title: string;
-    }>
-  | undefined;
+type ResponseData = {
+  id: string;
+  title: string;
+};
+
+export type Response = ResponseHttp<ResponseData>;
 
 export type Request = {
   title: string;

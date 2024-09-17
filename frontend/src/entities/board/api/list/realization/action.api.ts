@@ -1,13 +1,8 @@
-import { Response } from "./response";
+import { parseServerActionResponse } from "@/shared/api/parseServerActionResponse";
+import { ResponseData } from "./response";
 
-export const actionApi = async (): Promise<Response> => {
-  const res = await fetch("/api/board/list");
+export const actionApi = async () => {
+  const response = await fetch("/api/board/list");
 
-  const { data: boards } = (await res.json()) as { data: Response };
-
-  if (!boards) {
-    return;
-  }
-
-  return boards;
+  return parseServerActionResponse<ResponseData>(response);
 };

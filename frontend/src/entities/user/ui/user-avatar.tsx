@@ -10,7 +10,10 @@ import { useSignOutMutation } from "@/entities/session";
 import { useUserInfoQuery } from "../api";
 
 export const UserAvatar = () => {
-  const { data: userInfo } = useUserInfoQuery();
+  const { data: response } = useUserInfoQuery();
+
+  const userInfo = response?.data;
+
   const { mutate: signOut, isPending } = useSignOutMutation();
 
   const isAuth = userInfo !== undefined;

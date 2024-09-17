@@ -1,1 +1,1 @@
-export const getBoardsMutationKey = () => ["boards"];
+export const getBoardsMutationKey = () => ["boards create"];

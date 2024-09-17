@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 const BoardSchema = new Schema({
   creator: { type: Schema.Types.ObjectId, ref: "User", required: true },
   title: { type: String, required: true },
+  translited_title: { type: String, required: true },
   posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
 });
 

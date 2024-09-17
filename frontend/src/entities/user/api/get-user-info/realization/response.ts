@@ -1,3 +1,4 @@
+import { ResponseHttp } from "@/shared";
 import { JWT } from "next-auth/jwt";
 
 export type User = {
@@ -7,5 +8,6 @@ export type User = {
   email: JWT["email"];
 };
 
+export type ResponseData = User;
 
-export type Response = User | undefined;
+export type Response = ResponseHttp<ResponseData>;

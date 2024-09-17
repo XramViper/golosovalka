@@ -1,10 +1,8 @@
-"use client";
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
 import { getBoardsMutationKey } from "./getBoardsMutationKey";
 import { createBoard } from "../realization";
 import { getBoardsListQueryKey } from "../../list/query";
+import { showErrorNotification } from "@/shared/api/showErrorNotification";
 
 type Options = {
   onSuccess?: () => void;
@@ -22,5 +20,6 @@ export const useBoardCreateMutation = (options?: Options) => {
       queryClient.invalidateQueries({ queryKey: getBoardsListQueryKey() });
       onSuccess?.();
     },
+    onError: showErrorNotification,
   });
 };

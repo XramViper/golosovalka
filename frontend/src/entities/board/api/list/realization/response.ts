@@ -1,8 +1,10 @@
 import { ResponseHttp } from "@/shared";
 
-type Board = {
+export type Board = {
   id: number;
   title: string;
 };
 
-export type Response = ResponseHttp<Board[]> | undefined;
+export type ResponseData = Board[];
+
+export type Response = ResponseHttp<ResponseData>;

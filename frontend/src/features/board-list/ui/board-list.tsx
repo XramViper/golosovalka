@@ -3,15 +3,21 @@
 import { useBoardsListQuery } from "@/entities/board/api";
 
 export function BoardList() {
-  const { data: boards = [] } = useBoardsListQuery();
+  const { data: responseData } = useBoardsListQuery();
+
+  if (!responseData) {
+    return null;
+  }
+
+  const { data: boards } = responseData;
 
   return (
     <div className="space-y-6 col-span-full md:col-span-4">
       <h1 className="font-extrabold text-lg md:text-xl">
-        {boards.length} доски
+        {boards?.length} доски
       </h1>
       <ul className="grid md:grid-cols-2 gap-4">
-        {boards.map((board, index) => (
+        {boards?.map((board, index) => (
           <li key={index}>
             <a
               className="rounded-box block p-6 bg-base-100 hover:bg-neutral hover:text-neutral-content duration-150"

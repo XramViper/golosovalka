@@ -1,11 +1,11 @@
 import { ResponseHttp } from "@/shared";
 
-type ResponseData = {
+export type BoardInfoOnCreation = {
   id: string;
   title: string;
 };
 
-export type Response = ResponseHttp<ResponseData>;
+export type Response = ResponseHttp<BoardInfoOnCreation>;
 
 export type Request = {
   title: string;

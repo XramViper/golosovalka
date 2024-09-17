@@ -9,8 +9,9 @@ import {
   getErrorResponse,
 } from "@/shared/api/getErrorResponse";
 import { getSuccessResponse } from "@/shared/api/getSuccessResponse";
+import { Response } from "./types";
 
-export const actionServer = async () => {
+export const actionServer = async (): Promise<Response> => {
   await connectDB();
   const res = await getServerSession();
 

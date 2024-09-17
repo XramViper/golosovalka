@@ -1,7 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { getBoardsList } from "../realization";
-import { getBoardsListQueryKey } from "./getBoardsListQueryKey";
+import { getBoardsListQueryKey } from "./key";
+import { getBoardsList } from "../action";
 
 export const useBoardsListQuery = () => {
   return useQuery({

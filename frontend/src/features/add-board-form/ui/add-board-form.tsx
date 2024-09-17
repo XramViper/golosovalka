@@ -1,6 +1,6 @@
 "use client";
 
-import { useBoardCreateMutation } from "@/entities/board/api";
+import { useBoardCreateMutation } from "@/entities/board/api/create";
 
 export function AddBoardForm() {
   const { mutate, isPending } = useBoardCreateMutation({

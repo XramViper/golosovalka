@@ -1,11 +1,15 @@
 "use client";
 
-import { useBoardByIdQuery } from "@/entities/board/api";
+import {
+  useBoardByIdQuery,
+  useBoardDeleteMutation,
+} from "@/entities/board/api";
 import { DeleteButton } from "@/shared";
 import {
   ArrowUpRightIcon,
   DocumentDuplicateIcon,
 } from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
 
 interface BoardInfoProps {
   boardId: string;
@@ -15,8 +19,15 @@ export function BoardInfo(props: BoardInfoProps) {
   const { boardId } = props;
 
   const { data: responseData } = useBoardByIdQuery(boardId);
+  const router = useRouter();
 
   const boardInfo = responseData?.data;
+
+  const { mutate: deleteBoard, isPending } = useBoardDeleteMutation({
+    onSuccess: () => {
+      router.push("/dashboard");
+    },
+  });
 
   if (!boardInfo) {
     return null;
@@ -54,11 +65,7 @@ export function BoardInfo(props: BoardInfoProps) {
         </div>
       </div>
 
-      <DeleteButton
-        onClick={function (): void {
-          throw new Error("Delete board not implemented.");
-        }}
-      />
+      <DeleteButton disabled={isPending} onClick={() => deleteBoard(boardId)} />
     </section>
   );
 }

@@ -16,7 +16,6 @@ export const Header = () => {
     return null;
   }
 
-  // TODO: get board name
   const boardName = firstLevelId;
 
   const boardTitle = <h3 className="text-2xl font-black">{boardName}</h3>;

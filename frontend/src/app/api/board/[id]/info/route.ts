@@ -1,5 +1,5 @@
 import { getBoardInfoById } from "@/entities/board/api";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 export async function GET(
   req: NextRequest,

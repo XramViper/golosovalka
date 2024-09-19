@@ -1,6 +1,6 @@
 "use client";
 
-import { useBoardByIdQuery } from "@/entities/board/api";
+import { useBoardByTitleQuery } from "@/entities/board/api";
 
 type Props = {
   boardName: string;
@@ -9,11 +9,17 @@ type Props = {
 export function AddPostForm(props: Props) {
   const { boardName } = props;
 
-  const { data } = useBoardByIdQuery(boardName);
+  const { data } = useBoardByTitleQuery(boardName);
+
+  const boardInfo = data?.data;
+
+  if (!boardInfo) {
+    return <div>Загрузка...</div>;
+  }
 
   return (
     <form className="space-y-4 w-full bg-base-100 rounded-box p-8 hover:shadow-lg duration-200">
-      {JSON.stringify(data)}
+      {JSON.stringify(boardInfo)}
       <h2 className="font-bold text-lg">Предложи идею</h2>
       <div className="form-control w-full">
         <div className="label">

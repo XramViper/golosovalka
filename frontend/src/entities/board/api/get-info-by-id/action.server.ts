@@ -12,9 +12,7 @@ import { getSuccessResponse } from "@/shared/api/getSuccessResponse";
 import { Response } from "./types";
 
 // key - boardId или board Translited Title
-export const actionServer = async (
-  boardUniqueKey: string
-): Promise<Response> => {
+export const actionServer = async (boardId: string): Promise<Response> => {
   await connectDB();
   const res = await getServerSession();
 
@@ -26,25 +24,12 @@ export const actionServer = async (
   const { email } = res.user;
 
   try {
-    console.log("boardUniqueKey", boardUniqueKey);
-
     const user = await User.findOne({ email });
 
-    let currentBoard = null;
-
-    try {
-      currentBoard = await Board.findOne({
-        _id: boardUniqueKey,
-        creator: user._id,
-      }).catch();
-    } catch (error) {}
-
-    try {
-      currentBoard = await Board.findOne({
-        translited_title: boardUniqueKey,
-        creator: user._id,
-      }).catch();
-    } catch (error) {}
+    const currentBoard = await Board.findOne({
+      _id: boardId,
+      creator: user._id,
+    });
 
     if (!currentBoard) {
       return await getErrorResponse(404, "Доски с таким ID  не существует");
@@ -60,7 +45,7 @@ export const actionServer = async (
   } catch (error) {
     return await getErrorResponse(
       400,
-      `Ошибка получения информации о доске ${boardUniqueKey}`
+      `Ошибка получения информации о доске ${boardId}`
     );
   }
 };

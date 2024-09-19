@@ -1,8 +1,8 @@
-import { Post } from "@/entities";
+import { Board } from "@/entities/board/api/get-info-by-title/types";
 import { PostCard } from "./post-card";
 
 type Props = {
-  posts: Post[];
+  posts: Board["posts"];
 };
 
 export function PostList(props: Props) {

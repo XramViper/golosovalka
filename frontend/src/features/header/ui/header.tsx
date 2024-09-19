@@ -1,12 +1,25 @@
 "use client";
 
 import { UserAvatar } from "@/entities";
+import { useBoardByTitleQuery } from "@/entities/board/api";
 import { BackButton, FeedbackButton, Logo } from "@/shared";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { FC } from "react";
 
-export const Header = () => {
+type Props = {
+  boardName?: string;
+};
+
+export const Header: FC<Props> = (props) => {
+  const { boardName: serverSideBoardTitle } = props;
+
+  const { data } = useBoardByTitleQuery(serverSideBoardTitle);
+
+  console.log("serverSideBoardTitle", serverSideBoardTitle);
+
+  const boardInfo = data?.data;
+
   const pathname = usePathname();
 
   const [, firstLevelRoute, firstLevelId, , secondLevelId] =
@@ -16,10 +29,10 @@ export const Header = () => {
     return null;
   }
 
-  const boardName = firstLevelId;
+  const boardName = boardInfo?.title || serverSideBoardTitle;
 
   const boardTitle = <h3 className="text-2xl font-black">{boardName}</h3>;
-  // /
+
   let headerContent = (
     <>
       <Logo />
@@ -31,9 +44,20 @@ export const Header = () => {
 
   const isPublicBoardRoute = firstLevelRoute === "b";
 
+  if (isPublicBoardRoute && !serverSideBoardTitle) {
+    return null;
+  }
+
   // /b/boardPublicId
   if (isPublicBoardRoute) {
-    headerContent = <BackButton label={boardTitle} />;
+    headerContent = (
+      <>
+        <div className="mr-auto">
+          <BackButton label={boardTitle} />
+        </div>
+        <UserAvatar />
+      </>
+    );
   }
 
   // /b/boardPublicId/p/postName

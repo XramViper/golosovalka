@@ -11,6 +11,10 @@ export function BoardList() {
 
   const { data: boards } = responseData;
 
+  if (!boards?.length) {
+    return null;
+  }
+
   return (
     <div className="space-y-6 col-span-full md:col-span-4">
       <h1 className="font-extrabold text-lg md:text-xl">

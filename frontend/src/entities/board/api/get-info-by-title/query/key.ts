@@ -1,1 +1,4 @@
-export const getBoardInfoByTitleQueryKey = (title: string) => ["boards", title];
+export const getBoardInfoByTitleQueryKey = (title: string) => [
+  "board",
+  { title },
+];

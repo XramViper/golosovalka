@@ -10,6 +10,7 @@ type Status = "NEW" | "IN_PROGRESS" | "DONE" | "CLOSED";
 type Posts = {
   id: string;
   title: string;
+  translitted_title: string;
   description: string;
   comments: Comment[];
   status: Status;

@@ -16,8 +16,6 @@ export const Header: FC<Props> = (props) => {
 
   const { data } = useBoardByTitleQuery(serverSideBoardTitle);
 
-  console.log("serverSideBoardTitle", serverSideBoardTitle);
-
   const boardInfo = data?.data;
 
   const pathname = usePathname();

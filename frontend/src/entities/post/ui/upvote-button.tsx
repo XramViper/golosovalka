@@ -16,7 +16,6 @@ export const UpvoteButton = ({
 }: UpvoteButtonProps) => {
   const handleUpvote = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    console.log(`Upvoting post with id: ${postId}`);
   };
 
   return (

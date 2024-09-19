@@ -11,7 +11,7 @@ type Options = {
   onSuccess?: () => void;
 };
 
-export const usePostCreateMutation = (boardId?: string, options?: Options) => {
+export const usePostCreateMutation = (boardName: string, options?: Options) => {
   const { onSuccess } = options ?? {};
 
   const queryClient = useQueryClient();
@@ -20,10 +20,9 @@ export const usePostCreateMutation = (boardId?: string, options?: Options) => {
     mutationKey: getCreatePostMutationKey(),
     mutationFn: createPost,
     onSuccess: () => {
-      if (boardId)
-        queryClient.invalidateQueries({
-          queryKey: getBoardInfoByTitleQueryKey(boardId),
-        });
+      queryClient.invalidateQueries({
+        queryKey: getBoardInfoByTitleQueryKey(boardName),
+      });
       onSuccess?.();
     },
     // Показать модалку с атворизацией

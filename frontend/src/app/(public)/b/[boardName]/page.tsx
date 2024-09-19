@@ -24,11 +24,8 @@ export default function Page({
           </div>
         </div>
         <div className="space-y-6 w-full">
-          <PostList posts={[]} />
+          <PostList boardName={boardName} />
         </div>
-        <dialog id="signin_modal" className="modal">
-          {/* Sign up modal content */}
-        </dialog>
       </main>
     </>
   );

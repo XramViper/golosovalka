@@ -11,8 +11,6 @@ export const actionServer = async (boardTitle: string): Promise<Response> => {
   await connectDB();
 
   try {
-    console.log("boardTitle", boardTitle);
-
     const currentBoard = await Board.findOne({
       translited_title: boardTitle,
     });

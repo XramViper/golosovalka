@@ -14,9 +14,7 @@ export function AddPostForm(props: Props) {
 
   const boardInfo = data?.data;
 
-  const boardId = boardInfo?.id;
-
-  const { mutate: createPost } = usePostCreateMutation(boardId, {
+  const { mutate: createPost, isPending } = usePostCreateMutation(boardName, {
     onSuccess: clearForm,
   });
 
@@ -28,8 +26,6 @@ export function AddPostForm(props: Props) {
     const form = document.querySelector("form") as HTMLFormElement;
     form.reset();
   }
-
-  console.log("boardId", boardId);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,8 +39,6 @@ export function AddPostForm(props: Props) {
 
     createPost({ boardId, title, description });
   };
-
-  console.log("boardInfo", boardInfo);
 
   return (
     <form
@@ -76,7 +70,11 @@ export function AddPostForm(props: Props) {
           className="textarea border-base-content/10 w-full placeholder:opacity-60 text-base-content/90"
         ></textarea>
       </div>
-      <button type="submit" className="btn btn-primary w-full">
+      <button
+        disabled={isPending}
+        type="submit"
+        className="btn btn-primary w-full"
+      >
         Прикрепить идею
       </button>
     </form>

@@ -1,6 +1,19 @@
-export function AddPostForm() {
+"use client";
+
+import { useBoardByIdQuery } from "@/entities/board/api";
+
+type Props = {
+  boardName: string;
+};
+
+export function AddPostForm(props: Props) {
+  const { boardName } = props;
+
+  const { data } = useBoardByIdQuery(boardName);
+
   return (
     <form className="space-y-4 w-full bg-base-100 rounded-box p-8 hover:shadow-lg duration-200">
+      {JSON.stringify(data)}
       <h2 className="font-bold text-lg">Предложи идею</h2>
       <div className="form-control w-full">
         <div className="label">

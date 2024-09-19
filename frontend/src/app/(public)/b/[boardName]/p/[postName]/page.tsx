@@ -1,5 +1,3 @@
-"use client"
-
 import { UpvoteButton } from "@/entities/post/ui/upvote-button";
 import { AddCommentForm, SignInModal } from "@/features";
 import { CommentsList } from "@/features/comments-list";
@@ -17,6 +15,8 @@ const examplePost = {
 
 export default function Page({}: { params: { postName: string } }) {
   const post = examplePost;
+
+  return <div>123</div>;
 
   return (
     <main className="min-h-screen max-w-5xl mx-auto max-lg:px-4 py-12 pb-24 bg-base-200 flex flex-col md:flex-row gap-16 items-start">

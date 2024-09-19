@@ -1,11 +1,12 @@
+"use client";
+
 import { ChevronUpIcon } from "@heroicons/react/24/outline";
-import { Post } from "../model";
 import { MouseEvent } from "react";
 
 interface UpvoteButtonProps {
   count: number;
   isUpvoted: boolean;
-  postId: Post["id"];
+  postId: string;
 }
 
 export const UpvoteButton = ({

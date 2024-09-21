@@ -37,21 +37,25 @@ export const actionServer = async (data: Request) => {
 
     const translited_title = translit(data.title);
 
-    const existedPost = await Post.findOne({
+    const currentBoard = await Board.findById(data.boardId);
+
+    if (!currentBoard) {
+      return await getErrorResponse(404, "Доска не найдена");
+    }
+
+    const existedPosts = await Post.find({
       translitted_title: translited_title,
     });
 
-    if (existedPost) {
-      return await getErrorResponse(
-        400,
-        `Пост с названием «${data.title}» уже существует`
-      );
-    }
-
-    const board = await Board.findById(data.boardId);
-
-    if (!board) {
-      return await getErrorResponse(404, "Доска не найдена");
+    for (const post of existedPosts) {
+      const postId = post._id as Types.ObjectId;
+      const isPostExist = currentBoard.posts.includes(postId);
+      if (isPostExist) {
+        return await getErrorResponse(
+          400,
+          `Пост с названием «${data.title}» уже существует`
+        );
+      }
     }
 
     const post = new Post({
@@ -66,9 +70,9 @@ export const actionServer = async (data: Request) => {
 
     await post.save();
 
-    board.posts.push(post._id as Types.ObjectId);
+    currentBoard.posts.push(post._id as Types.ObjectId);
 
-    await board.save();
+    await currentBoard.save();
 
     return getSuccessResponse(post);
   } catch (error) {

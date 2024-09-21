@@ -1,4 +1,4 @@
-import { AddPostForm, Header, PostList, SignInModal } from "@/features";
+import { AddPostForm, Header, PostList } from "@/features";
 import React from "react";
 
 // Page component
@@ -26,8 +26,6 @@ export default function Page({
         <div className="space-y-6 w-full">
           <PostList boardName={boardName} />
         </div>
-
-        <SignInModal />
       </main>
     </>
   );

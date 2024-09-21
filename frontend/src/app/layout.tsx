@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/features";
+import { Header, SignInModal } from "@/features";
 import clsx from "clsx";
 import Providers from "@/config/Providers";
 
@@ -27,6 +27,7 @@ export default function RootLayout({
           <div className="bg-base-200">
             <Header />
             {children}
+            <SignInModal />
           </div>
         </Providers>
       </body>

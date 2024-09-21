@@ -13,6 +13,7 @@ export function SignInForm(props: Props) {
   const { redirect = true } = props;
 
   const [isSendEmail, setIsSendEmailValue] = useState(false);
+  const [isFetchingEmail, setIsFetchingEmail] = useState(false);
 
   const setIsSendEmail = useCallback(
     (value: boolean) => {
@@ -48,12 +49,16 @@ export function SignInForm(props: Props) {
 
   const handleEmailSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsFetchingEmail(true);
     signIn("email", { email, redirect })
       .then(() => {
         setIsSendEmail(true);
       })
       .catch(() => {
         setIsSendEmail(false);
+      })
+      .finally(() => {
+        setIsFetchingEmail(false);
       });
   };
 
@@ -111,8 +116,12 @@ export function SignInForm(props: Props) {
               value={email}
               onChange={handleEmailChange}
             />
-            <button type="submit" className="btn text-white btn-lg">
-              Войти по Email
+            <button
+              disabled={isFetchingEmail}
+              type="submit"
+              className="btn text-white btn-lg"
+            >
+              {isFetchingEmail ? "Отправляем письмо" : "Войти по Email"}
             </button>
           </form>
           <p className="text-base-content/75">

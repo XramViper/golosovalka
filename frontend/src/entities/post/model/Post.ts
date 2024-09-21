@@ -3,8 +3,7 @@
 import mongoose, { Document, Model } from "mongoose";
 const { Schema } = mongoose;
 
-// Define the interface for the Post document
-interface IPost extends Document {
+export interface IPost extends Document {
   creator: mongoose.Types.ObjectId;
   title: string;
   translitted_title: string;

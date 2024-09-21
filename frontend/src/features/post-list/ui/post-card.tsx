@@ -9,7 +9,7 @@ export function PostCard({ post }: PostCardProps) {
   return (
     <a
       className="flex bg-base-100 rounded-box p-6 duration-200 hover:shadow-lg cursor-pointer justify-between items-center gap-4"
-      title="Go to post"
+      title="Перейти к посту"
       href={`/b/tribun/p/${post.translitted_title}`}
     >
       <div>

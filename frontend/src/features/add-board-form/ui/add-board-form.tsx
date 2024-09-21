@@ -28,7 +28,7 @@ export function AddBoardForm() {
             Делай только то, что твои пользователи{" "}
             <span className="bg-neutral text-neutral-content px-1.5">
               реально
-            </span>{" "}
+            </span>
             хотят
           </h2>
           <div className="form-control w-full">

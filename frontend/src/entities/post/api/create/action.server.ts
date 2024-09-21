@@ -13,11 +13,17 @@ import { parseServerActionResponse } from "@/shared/api/parseServerActionRespons
 import Post from "../../model/Post";
 import Board from "@/entities/board/model/Board"; // Import the Board model
 import { translit } from "@/shared/utils/translit";
+import { Types } from "mongoose";
 
 export const actionServer = async (data: Request) => {
   await connectDB();
 
   const response = await getUserInfo();
+
+  if (response.status === 401) {
+    return await getAuthErrorResponse();
+  }
+
   const { data: userInfo } = await parseServerActionResponse(response);
 
   if (!userInfo) {
@@ -60,7 +66,7 @@ export const actionServer = async (data: Request) => {
 
     await post.save();
 
-    board.posts.push(post._id);
+    board.posts.push(post._id as Types.ObjectId);
 
     await board.save();
 

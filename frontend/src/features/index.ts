@@ -6,4 +6,4 @@ export * from "./add-comment-form";
 export * from "./edit-post-list";
 export * from "./board-list";
 export * from "./post-list";
-export * from "./signin-modal";
+export * from "./signin-form";

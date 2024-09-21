@@ -2,17 +2,18 @@
 
 import { ChevronUpIcon } from "@heroicons/react/24/outline";
 import { MouseEvent } from "react";
+import { IPost } from "../model";
 
 interface UpvoteButtonProps {
   count: number;
   isUpvoted: boolean;
-  postId: string;
+  postId: IPost['id'];
 }
 
 export const UpvoteButton = ({
   count,
   isUpvoted,
-  postId,
+  postId: string,
 }: UpvoteButtonProps) => {
   const handleUpvote = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -26,7 +27,7 @@ export const UpvoteButton = ({
           ? "border-transparent bg-primary text-primary-content"
           : "border-base-content/10 bg-base-100 text-base-content"
       }`}
-      title="Upvote post"
+      title="Проголосовать за пост"
     >
       <ChevronUpIcon
         strokeWidth="2.5"

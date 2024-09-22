@@ -1,3 +1,4 @@
+import { IPost } from "@/entities";
 import { Board } from "@/entities/board/api/get-info-by-title/types";
 import { UpvoteButton } from "@/entities/post/ui/upvote-button";
 
@@ -7,7 +8,16 @@ interface PostCardProps {
   boardName: string;
 }
 
+const statusTranslations: Record<IPost["status"], string | null> = {
+  NEW: null,
+  IN_PROGRESS: "В работе",
+  DONE: null,
+  CLOSED: null,
+};
+
 export function PostCard({ post, translittedTitle, boardName }: PostCardProps) {
+  const statusText = statusTranslations[post.status];
+
   return (
     <a
       className="flex bg-base-100 rounded-box p-6 duration-200 hover:shadow-lg cursor-pointer justify-between items-center gap-4"
@@ -17,13 +27,15 @@ export function PostCard({ post, translittedTitle, boardName }: PostCardProps) {
       <div>
         <div className="font-bold mb-0.5 flex gap-4 items-start">
           {post.title}
-          <div className="flex items-center gap-1.5 uppercase tracking-wide text-sm !leading-[24px] text-accent font-medium whitespace-nowrap">
-            {post.status}{" "}
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
-            </span>
-          </div>
+          {statusText && (
+            <div className="flex items-center gap-1.5 uppercase tracking-wide text-sm !leading-[24px] text-accent font-medium whitespace-nowrap">
+              {statusText}{" "}
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+              </span>
+            </div>
+          )}
         </div>
         <div className="text-base-content/90 leading-relaxed mb-2">
           {post.description}

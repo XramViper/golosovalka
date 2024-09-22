@@ -7,29 +7,29 @@ import { PostAdditionalInfo } from "./post-additional-info";
 import { PostContent } from "./post-content";
 import { PostTitle } from "./post-title";
 import { DeleteButton } from "@/shared";
-// import { usePostDeleteMutation } from "@/entities/post/api/delete/mutation/client";
+import { usePostDeleteMutation } from "@/entities/post/api/delete/mutation/client";
 import { usePostUpdateStatusMutation } from "@/entities/post/api/update-status/mutation/client";
 import { IPost } from "@/entities/post/model/Post";
+import { toast } from "react-toastify";
 
 interface Props {
   post: Board["posts"][0];
   boardId: string;
-  boardInfo: Board;
 }
 
-export function EditPostCard({ post, boardId, boardInfo }: Props) {
-  // const { mutate: deletePost, isPending: isDeletePending } =
-  //   usePostDeleteMutation({
-  //     boardId,
-  //     onSuccess: () => {
-  //       // Можно добавить уведомление об успешном удалении
-  //     },
-  //   });
+export function EditPostCard({ post, boardId }: Props) {
+  const { mutate: deletePost, isPending: isDeletePending } =
+    usePostDeleteMutation({
+      boardId,
+      onSuccess: () => {
+        toast.success("Пост удален");
+      },
+    });
 
   const { mutate: updateStatus, isPending: isUpdatePending } =
     usePostUpdateStatusMutation({
       onSuccess: () => {
-        // Можно добавить уведомление об успешном обновлении статуса
+        toast.success("Статус поста обновлен");
       },
     });
 
@@ -38,7 +38,7 @@ export function EditPostCard({ post, boardId, boardInfo }: Props) {
   };
 
   const handleDelete = () => {
-    // deletePost(post.id);
+    deletePost(post.id);
   };
 
   return (
@@ -61,12 +61,14 @@ export function EditPostCard({ post, boardId, boardInfo }: Props) {
           disabled={isUpdatePending}
         />
         <PostLink
-          boardTranslitedTitle={boardInfo.translittedTitle}
+          boardTranslitedTitle={boardId}
           postTranslitedTitle={post.translitted_title}
         />
         <DeleteButton
           onClick={handleDelete}
-          //  disabled={isDeletePending}
+          disabled={isDeletePending}
+          title="Удалить пост"
+          description="Вы уверены, что хотите удалить пост?"
         />
       </div>
     </div>

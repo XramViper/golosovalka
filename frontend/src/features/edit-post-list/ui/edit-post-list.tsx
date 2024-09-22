@@ -22,12 +22,7 @@ export function EditPostList(props: Props) {
   return (
     <section className="flex flex-col gap-6 w-full">
       {posts.map((post) => (
-        <EditPostCard
-          key={post.id}
-          post={post}
-          boardId={boardId}
-          boardInfo={boardInfo}
-        />
+        <EditPostCard key={post.id} post={post} boardId={boardId} />
       ))}
     </section>
   );

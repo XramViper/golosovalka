@@ -26,7 +26,7 @@ export function PostStatus({ status, onChange, disabled }: PostStatusProps) {
       <option value="NEW">⭐️&nbsp;&nbsp;&nbsp;&nbsp;Новое</option>
       <option value="IN_PROGRESS">🏗️&nbsp;&nbsp;&nbsp;&nbsp;В работе</option>
       <option value="DONE">✅&nbsp;&nbsp;&nbsp;&nbsp;Готово</option>
-      <option value="CANCELLED">❌&nbsp;&nbsp;&nbsp;&nbsp;Отменено</option>
+      <option value="CLOSED">❌&nbsp;&nbsp;&nbsp;&nbsp;Отменено</option>
     </select>
   );
 }

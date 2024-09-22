@@ -9,7 +9,6 @@ import {
   getErrorResponse,
 } from "@/shared/api/getErrorResponse";
 import { getSuccessResponse } from "@/shared/api/getSuccessResponse";
-import { Response } from "./types";
 
 // key - boardId или board Translited Title
 export const actionServer = async (boardId: string): Promise<Response> => {

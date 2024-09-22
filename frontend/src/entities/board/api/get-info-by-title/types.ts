@@ -1,19 +1,19 @@
+import { IPost } from "@/entities/post";
 import { ResponseHttp } from "@/shared";
+import { Types } from "mongoose";
 
-type Comment = {
-  id: string;
-  text: string;
-};
-
-type Status = "NEW" | "IN_PROGRESS" | "DONE" | "CLOSED";
+// type Comment = {
+//   id: string;
+//   text: string;
+// };
 
 type Posts = {
   id: string;
   title: string;
   translitted_title: string;
-  description: string;
-  comments: Comment[];
-  status: Status;
+  description?: string;
+  comments: Types.ObjectId[];
+  status: IPost["status"];
   upvotes: number;
   isUpvoted: boolean;
 };

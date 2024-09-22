@@ -17,7 +17,7 @@ export function PostList(props: Props) {
     return null;
   }
 
-  const { posts } = boardInfo;
+  const { posts, translittedTitle } = boardInfo;
 
   return (
     <div
@@ -27,7 +27,11 @@ export function PostList(props: Props) {
       className="space-y-6 col-span-full md:col-span-4"
     >
       {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
+        <PostCard
+          translittedTitle={translittedTitle}
+          key={post.id}
+          post={post}
+        />
       ))}
     </div>
   );

@@ -47,15 +47,15 @@ export const actionServer = async (data: Request) => {
       translitted_title: translited_title,
     });
 
-    for (const post of existedPosts) {
-      const postId = post._id as Types.ObjectId;
-      const isPostExist = currentBoard.posts.includes(postId);
-      if (isPostExist) {
-        return await getErrorResponse(
-          400,
-          `Пост с названием «${data.title}» уже существует`
-        );
-      }
+    const existingPost = existedPosts.find(post => 
+      currentBoard.posts.includes(post._id as Types.ObjectId)
+    );
+
+    if (existingPost) {
+      return await getErrorResponse(
+        400,
+        `Пост с названием «${data.title}» уже существует`
+      );
     }
 
     const post = new Post({

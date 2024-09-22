@@ -1,11 +1,5 @@
-"use client";
-
-import { SessionProvider } from "next-auth/react";
+import { LandingPage } from "@/pages";
 
 export default function Home() {
-  return (
-    <SessionProvider>
-      <div>Тут будет лендос</div>
-    </SessionProvider>
-  );
+  return <LandingPage />;
 }

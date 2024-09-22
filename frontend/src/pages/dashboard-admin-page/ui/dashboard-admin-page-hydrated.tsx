@@ -6,14 +6,14 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import React from "react";
-import { BoardInfo } from "./board-info";
 import { prefetchBoardsInfoByIdQuery } from "@/entities/board/api";
+import { DashboardAdminPage } from "./dashboard-admin-page";
 
 interface Props {
   boardId: string;
 }
 
-export async function BoardInfoHydrated(props: Props) {
+export async function DashboardAdminPageHydrated(props: Props) {
   const { boardId } = props;
 
   const queryClient = new QueryClient();
@@ -22,7 +22,7 @@ export async function BoardInfoHydrated(props: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <BoardInfo boardId={boardId} />
+      <DashboardAdminPage boardId={boardId} />
     </HydrationBoundary>
   );
 }

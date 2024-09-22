@@ -3,9 +3,10 @@ import { DocumentDuplicateIcon, CheckIcon } from "@heroicons/react/24/outline";
 
 interface Props {
   valueToCopy: string;
+  disabled?: boolean;
 }
 
-export function CopyButton({ valueToCopy }: Props) {
+export function CopyButton({ valueToCopy, disabled }: Props) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -24,7 +25,7 @@ export function CopyButton({ valueToCopy }: Props) {
       data-tooltip-id="tooltip"
       data-tooltip-content="Copy link"
       onClick={handleCopy}
-      disabled={copied}
+      disabled={disabled || copied}
     >
       {copied ? (
         <CheckIcon className="w-5 h-5" />

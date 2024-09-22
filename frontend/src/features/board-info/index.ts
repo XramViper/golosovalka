@@ -1,1 +1,1 @@
-export { BoardInfoHydrated as BoardInfo } from "./ui/board-info-hydrated";
+export { BoardInfo } from "./ui/board-info";

@@ -9,6 +9,7 @@ import {
   getErrorResponse,
 } from "@/shared/api/getErrorResponse";
 import { getSuccessResponse } from "@/shared/api/getSuccessResponse";
+import Post from "@/entities/post/model/Post";
 
 // key - boardId или board Translited Title
 export const actionServer = async (boardId: string): Promise<Response> => {
@@ -34,10 +35,21 @@ export const actionServer = async (boardId: string): Promise<Response> => {
       return await getErrorResponse(404, "Доски с таким ID  не существует");
     }
 
+    // Получаем посты по их ID
+    const posts = await Post.find({ _id: { $in: currentBoard.posts } });
+
     const data = {
       title: currentBoard.title,
       translittedTitle: currentBoard.translited_title,
-      posts: currentBoard.posts,
+      posts: posts.map((post) => ({
+        id: post._id,
+        title: post.title,
+        translitted_title: post.translitted_title,
+        description: post.description,
+        status: post.status,
+        upvotes: post.upvotes.length,
+        comments: post.comments.length,
+      })),
     };
 
     return getSuccessResponse(data);

@@ -7,6 +7,7 @@ import {
 import { CopyButton, DeleteButton } from "@/shared";
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
+import { useCurrentDomain } from "@/shared/hooks/useCurrentDomain";
 
 interface BoardInfoProps {
   boardId: string;
@@ -17,6 +18,7 @@ export function BoardInfo(props: BoardInfoProps) {
 
   const { data: responseData } = useBoardByIdQuery(boardId);
   const router = useRouter();
+  const currentDomain = useCurrentDomain();
 
   const boardInfo = responseData?.data;
 
@@ -30,8 +32,9 @@ export function BoardInfo(props: BoardInfoProps) {
     return null;
   }
 
-  const currentDomain = window.location.origin;
-  const publicLink = `${currentDomain}/b/${boardInfo.translittedTitle}`;
+  const publicLink = currentDomain
+    ? `${currentDomain}/b/${boardInfo.translittedTitle}`
+    : "";
 
   return (
     <section className="space-y-6 self-start md:sticky md:top-6">
@@ -41,15 +44,20 @@ export function BoardInfo(props: BoardInfoProps) {
         <p className="text-sm mb-3">Ссылка для ваших пользователей</p>
 
         <div className="relative px-4 py-2.5 rounded-box bg-base-100 select-all w-30 md:w-96">
-          <div>{publicLink}</div>
+          {currentDomain ? (
+            <div>{publicLink}</div>
+          ) : (
+            <div className="animate-pulse bg-base-200 h-6 w-[calc(100%-80px)] mr-8 rounded"></div>
+          )}
           <div className="absolute flex items-center gap-2 right-2 top-1/2 -translate-y-1/2">
-            <CopyButton valueToCopy={publicLink} />
+            <CopyButton valueToCopy={publicLink} disabled={!currentDomain} />
             <a
               href={publicLink}
               target="_blank"
               className="btn btn-neutral btn-sm btn-square"
               data-tooltip-id="tooltip"
               data-tooltip-content="Go to board"
+              aria-disabled={!currentDomain}
             >
               <ArrowUpRightIcon className="w-5 h-5" />
             </a>

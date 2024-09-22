@@ -1,12 +1,18 @@
 import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 
-export function PostLink() {
+interface PostLinkProps {
+  boardTranslitedTitle: string;
+  postTranslitedTitle: string;
+}
+
+export function PostLink({
+  boardTranslitedTitle,
+  postTranslitedTitle,
+}: PostLinkProps) {
+  const postUrl = `/b/${boardTranslitedTitle}/p/${postTranslitedTitle}`;
+
   return (
-    <a
-      className="btn btn-ghost"
-      target="_blank"
-      href="/b/tribun/p/what-should-be-create"
-    >
+    <a className="btn btn-ghost" target="_blank" href={postUrl}>
       Перейти <ArrowUpRightIcon strokeWidth="2" className="w-5 h-5" />
     </a>
   );

@@ -1,1 +1,1 @@
-export { AddPostForm } from "./ui/hydrated";
+export { AddPostForm } from "./ui/add-post-form";

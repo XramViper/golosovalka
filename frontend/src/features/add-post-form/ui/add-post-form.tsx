@@ -18,6 +18,8 @@ export function AddPostForm(props: Props) {
     onSuccess: clearForm,
   });
 
+  console.log("boardInfo", data, boardInfo);
+
   if (!boardInfo) {
     return <div>Загрузка...</div>;
   }

@@ -1,1 +1,1 @@
-export * from "./ui/hydrated";
+export { PostList } from "./ui/post-list";

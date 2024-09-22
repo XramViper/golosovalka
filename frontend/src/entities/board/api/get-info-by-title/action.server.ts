@@ -43,7 +43,7 @@ export const actionServer = async (boardTitle: string): Promise<Response> => {
       comments: post.comments ?? [],
       status: post.status ?? "NEW",
       upvotes: post.upvotes.length ?? 0,
-      isUpvoted: post.upvotes.includes(currentUser._id),
+      isUpvoted: post.upvotes.includes(currentUser?._id),
     }));
 
     const data: BoardType = {

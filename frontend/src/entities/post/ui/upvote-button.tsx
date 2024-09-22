@@ -3,25 +3,32 @@
 import { ChevronUpIcon } from "@heroicons/react/24/outline";
 import { MouseEvent } from "react";
 import { IPost } from "../model";
+import { usePostUpvoteMutation } from "../api/upvote/mutation/client";
 
 interface UpvoteButtonProps {
   count: number;
   isUpvoted: boolean;
-  postId: IPost['id'];
+  postId: IPost["id"];
+  boardName: string;
 }
 
 export const UpvoteButton = ({
   count,
   isUpvoted,
-  postId: string,
+  postId,
+  boardName,
 }: UpvoteButtonProps) => {
+  const { mutate: upvotePost, isPending } = usePostUpvoteMutation(boardName);
+
   const handleUpvote = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    upvotePost(postId);
   };
 
   return (
     <button
       onClick={handleUpvote}
+      disabled={isPending}
       className={`px-4 py-2 rounded-box group text-center text-lg duration-150 border ${
         isUpvoted
           ? "border-transparent bg-primary text-primary-content"
@@ -34,7 +41,7 @@ export const UpvoteButton = ({
         className="w-5 h-5 ease-in-out duration-150 -translate-y-0.5 group-hover:translate-y-0"
       />
 
-      {isUpvoted ? count + 1 : count}
+      {count}
     </button>
   );
 };

@@ -28,6 +28,7 @@ export function PostList(props: Props) {
     >
       {posts.map((post) => (
         <PostCard
+          boardName={boardName}
           translittedTitle={translittedTitle}
           key={post.id}
           post={post}

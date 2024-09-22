@@ -4,9 +4,10 @@ import { UpvoteButton } from "@/entities/post/ui/upvote-button";
 interface PostCardProps {
   translittedTitle: string;
   post: Board["posts"][0];
+  boardName: string;
 }
 
-export function PostCard({ post, translittedTitle }: PostCardProps) {
+export function PostCard({ post, translittedTitle, boardName }: PostCardProps) {
   return (
     <a
       className="flex bg-base-100 rounded-box p-6 duration-200 hover:shadow-lg cursor-pointer justify-between items-center gap-4"
@@ -49,6 +50,7 @@ export function PostCard({ post, translittedTitle }: PostCardProps) {
         isUpvoted={post.isUpvoted}
         count={post.upvotes}
         postId={post.id}
+        boardName={boardName}
       />
     </a>
   );

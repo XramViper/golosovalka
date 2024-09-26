@@ -33,7 +33,7 @@ export default function Page() {
   return (
     <div
       data-theme="dark"
-      className="bg-base-300 flex items-center justify-center h-screen w-screen"
+      className="bg-base-200 flex items-center justify-center h-screen w-screen"
     >
       <div className="card bg-base-100 w-96 shadow-2xl shadow-slate-900">
         <div className="card-body">

@@ -11,96 +11,79 @@ type Props = {
   boardName?: string;
 };
 
-export const Header: FC<Props> = (props) => {
-  const { boardName: serverSideBoardTitle } = props;
-
+export const Header: FC<Props> = ({ boardName: serverSideBoardTitle }) => {
   const { data } = useBoardByTitleQuery(serverSideBoardTitle);
-
-  const boardInfo = data?.data;
-
   const pathname = usePathname();
-
   const [, firstLevelRoute, firstLevelId, , secondLevelId] =
     pathname.split("/");
 
-  if (firstLevelRoute === "auth") {
-    return null;
-  }
+  const isLandingPage = pathname === "/";
 
-  const boardName = boardInfo?.title || serverSideBoardTitle;
+  if (firstLevelRoute === "auth") return null;
 
+  const boardName = data?.data?.title || serverSideBoardTitle;
   const boardTitle = <h3 className="text-2xl font-black">{boardName}</h3>;
-
-  let headerContent = (
-    <>
-      <Logo />
-      <div className="ml-auto">
-        <UserAvatar />
-      </div>
-    </>
-  );
-
   const isPublicBoardRoute = firstLevelRoute === "b";
 
-  if (isPublicBoardRoute && !serverSideBoardTitle) {
-    return null;
-  }
+  if (isPublicBoardRoute && !serverSideBoardTitle) return null;
 
-  // /b/boardPublicId
-  if (isPublicBoardRoute) {
-    headerContent = (
+  const getHeaderContent = () => {
+    if (isPublicBoardRoute && firstLevelId && secondLevelId) {
+      return <BackButton href={`/b/${firstLevelId}`} label={boardTitle} />;
+    }
+
+    if (isPublicBoardRoute) {
+      return (
+        <>
+          <div className="mr-auto">
+            <BackButton label={boardTitle} />
+          </div>
+          <UserAvatar />
+        </>
+      );
+    }
+
+    if (firstLevelRoute === "dashboard") {
+      return (
+        <>
+          <div className="mr-auto">
+            {firstLevelId ? (
+              <BackButton
+                href="/dashboard"
+                label={<h3 className="text-lg font-bold">Назад</h3>}
+              />
+            ) : (
+              <UserAvatar />
+            )}
+          </div>
+          <FeedbackButton />
+        </>
+      );
+    }
+
+    return (
       <>
-        <div className="mr-auto">
-          <BackButton label={boardTitle} />
-        </div>
-        <UserAvatar />
-      </>
-    );
-  }
-
-  // /b/boardPublicId/p/postName
-  if (isPublicBoardRoute && firstLevelId && secondLevelId) {
-    headerContent = (
-      <BackButton href={`/b/${firstLevelId}`} label={boardTitle} />
-    );
-  }
-
-  // /dashboard
-  if (firstLevelRoute === "dashboard" && !firstLevelId) {
-    headerContent = (
-      <>
-        <div className="mr-auto">
+        <Logo />
+        <div className="ml-auto">
           <UserAvatar />
         </div>
-        <FeedbackButton />
       </>
     );
-  }
-
-  // /dashboard/boardId
-  if (firstLevelRoute === "dashboard" && firstLevelId) {
-    headerContent = (
-      <>
-        <div className="mr-auto">
-          <BackButton
-            href="/dashboard"
-            label={<h3 className="text-lg font-bold">Назад</h3>}
-          />
-        </div>
-        <FeedbackButton />
-      </>
-    );
-  }
+  };
 
   return (
     <header
-      className={clsx("relative z-50", {
-        "bg-base-100": !isPublicBoardRoute,
-        "bg-base-200": isPublicBoardRoute,
-      })}
+      className={clsx(
+        "sticky top-0 z-50",
+        {
+          "bg-base-100": !isPublicBoardRoute || isLandingPage,
+          "bg-base-200": isPublicBoardRoute,
+        },
+        isLandingPage ? "transition-colors duration-300" : ""
+      )}
     >
-      <div className="max-w-5xl py-3 max-lg:px-4 mx-auto flex gap-4">
-        {headerContent}
+      <div className="max-w-7xl py-3 max-lg:px-4 mx-auto flex gap-4">
+        {getHeaderContent()}
       </div>
     </header>
   );

@@ -7,3 +7,4 @@ export * from "./edit-post-list";
 export * from "./board-list";
 export * from "./post-list";
 export * from "./signin-form";
+export * from "./landing-elements";

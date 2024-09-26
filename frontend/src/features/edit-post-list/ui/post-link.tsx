@@ -12,7 +12,7 @@ export function PostLink({
   const postUrl = `/b/${boardTranslitedTitle}/p/${postTranslitedTitle}`;
 
   return (
-    <a className="btn btn-ghost" target="_blank" href={postUrl}>
+    <a className="btn" target="_blank" href={postUrl}>
       Перейти <ArrowUpRightIcon strokeWidth="2" className="w-5 h-5" />
     </a>
   );

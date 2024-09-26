@@ -22,7 +22,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <QueryClientProvider client={queryClient}>
         {children}
         <ToastContainer
-          theme="dark"
+          theme="light"
           closeButton={false}
           hideProgressBar
           closeOnClick

@@ -36,8 +36,8 @@ export const UserAvatar = () => {
   if (!isDashboard) {
     return (
       <a href="/dashboard">
-        <button className="btn" type="button">
-          {displayName}
+        <button className="btn truncate max-w-[160px] sm:max-w-none" type="button">
+          <span className="truncate">{displayName}</span>
         </button>
       </a>
     );

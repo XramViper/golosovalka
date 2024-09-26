@@ -16,7 +16,7 @@ export function DeleteButton(props: DeleteButtonProps) {
     <>
       <button
         disabled={disabled}
-        className="btn btn-ghost"
+        className="btn"
         onClick={() => ref.current?.showModal()}
       >
         Удалить
@@ -30,7 +30,7 @@ export function DeleteButton(props: DeleteButtonProps) {
             <form method="dialog">
               <button
                 disabled={disabled}
-                className="btn btn-primary"
+                className="btn"
                 onClick={() => ref.current?.showModal()}
               >
                 Отмена
@@ -38,7 +38,7 @@ export function DeleteButton(props: DeleteButtonProps) {
             </form>
             <button
               disabled={disabled}
-              className="btn btn-outline"
+              className="btn btn-error"
               onClick={onClick}
             >
               Да, удалить

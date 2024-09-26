@@ -1,23 +1,25 @@
 import { HeroCard, ProblemSection } from "@/features";
+import { SmoothScroll } from "@/shared";
 import React from "react";
 
 export const LandingPage = () => {
   return (
     <div className="bg-base-100">
-      <HeroCard />
+      <SmoothScroll>
+        <HeroCard />
+        <ProblemSection />
+        {/* Описание преимуществ */}
 
-      <ProblemSection />
-      {/* Описание преимуществ */}
+        {/* Как работает */}
 
-      {/* Как работает */}
+        {/* Отзывы */}
 
-      {/* Отзывы */}
+        {/* FAQ */}
 
-      {/* FAQ */}
+        {/* Использовать */}
 
-      {/* Использовать */}
-
-      {/* Футер */}
+        {/* Футер */}
+      </SmoothScroll>
     </div>
   );
 };

@@ -16,6 +16,7 @@
     "@types/mongodb": "^4.0.7",
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^11.8.0",
     "mongodb": "^6.8.1",
     "mongoose": "^8.6.1",
     "next": "14.2.8",
@@ -24,7 +25,8 @@
     "qrcode.react": "^4.0.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "sass": "^1.79.3"
   },
   "devDependencies": {
     "@types/node": "^20",

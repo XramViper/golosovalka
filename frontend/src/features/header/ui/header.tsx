@@ -15,7 +15,7 @@ export const Header: FC<Props> = ({ boardName: serverSideBoardTitle }) => {
   const { data } = useBoardByTitleQuery(serverSideBoardTitle);
   const pathname = usePathname();
   const [, firstLevelRoute, firstLevelId, , secondLevelId] =
-    pathname.split("/");
+    pathname?.split("/") || [];
 
   const isLandingPage = pathname === "/";
 
@@ -79,10 +79,10 @@ export const Header: FC<Props> = ({ boardName: serverSideBoardTitle }) => {
           "bg-base-100": !isPublicBoardRoute || isLandingPage,
           "bg-base-200": isPublicBoardRoute,
         },
-        isLandingPage ? "transition-colors duration-300" : ""
+        isLandingPage ? "transition-colors duration-300" : "",
       )}
     >
-      <div className="max-w-7xl py-3 max-lg:px-4 mx-auto flex gap-4">
+      <div className="mx-auto flex max-w-7xl gap-4 px-4 py-3">
         {getHeaderContent()}
       </div>
     </header>

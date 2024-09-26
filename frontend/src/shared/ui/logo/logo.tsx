@@ -12,7 +12,7 @@ export const Logo = ({ color = "white" }: Props) => {
   return (
     <div onClick={() => router.push("/")} className="cursor-pointer">
       <svg
-        className="w-32 md:w-[228px]"
+        className="w-36 md:w-[228px]"
         width="228"
         height="52"
         viewBox="0 0 228 52"

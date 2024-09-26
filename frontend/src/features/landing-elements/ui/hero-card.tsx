@@ -1,19 +1,20 @@
 "use client";
 
 import { UpvoteButton } from "@/entities/post/ui/upvote-button";
-import clsx from "clsx";
 import { useState } from "react";
+import { classify } from "@/shared/styles/utils/classify";
+import { Arrow } from "@/shared";
 
 export const HeroCard = () => {
   return (
     <div
-      className={clsx(
-        "py-8 lg:py-16 lg:py-32",
-        "min-h-[calc(100vh-10rem)]",
-        "grid grid-cols-1 lg:grid-cols-12",
-        "gap-8 lg:gap-16 lg:gap-32",
-        "place-items-center"
-      )}
+      className={classify({
+        layout: "mx-auto grid grid-cols-1 max-lg:max-w-xl lg:grid-cols-12",
+        spacing: "gap-8 md:gap-16 lg:gap-10",
+        padding: "py-8 md:py-16 lg:py-24",
+        height: "min-h-[calc(100vh-10rem)]",
+        alignment: "place-items-center",
+      })}
     >
       <Posts />
       <Description />
@@ -23,25 +24,58 @@ export const HeroCard = () => {
 
 function Posts() {
   return (
-    <div className="px-0 sm:px-4 col-span-1 lg:col-span-5 w-full order-2 lg:order-1">
-      <div className="rounded-xl p-4 lg:p-8 py-6 bg-base-200">
-        <h3 className="text-lg font-bold pb-4">Последние предложения</h3>
-        <div className="flex flex-col gap-4">
-          <PostCard
-            title="Онлайн оплата"
-            description="15% моих клиентов хотят эквайринг, с его помощью я увеличу продажи"
-            count={89}
-          />
-          <PostCard
-            title="Долгая загрузка сайта"
-            description="Изображения много весят, их нужно оптимизировать"
-            count={23}
-          />
-          <PostCard
-            title="Темная тема"
-            description="Я вообще мимокрокодил"
-            count={1}
-          />
+    <div
+      className={classify({
+        layout:
+          "order-2 col-span-1 w-full px-0 sm:px-4 lg:order-1 lg:col-span-6",
+        padding: "p-4 py-6 lg:p-8",
+      })}
+    >
+      <div className="mockup-browser border border-base-300 bg-base-300">
+        <div className="mockup-browser-toolbar">
+          <div className="input">golosovalka.com</div>
+        </div>
+        <div className="flex justify-center bg-base-200">
+          <div
+            className={classify({
+              layout: "rounded-xl",
+              colors: "bg-base-200",
+              padding: "p-4 py-6 lg:p-8",
+            })}
+          >
+            <h3
+              className={classify({
+                spacing: "pb-6",
+                typography: "text-lg font-bold",
+              })}
+            >
+              Последние предложения
+            </h3>
+            <div
+              className={classify({
+                layout: "flex flex-col",
+                spacing: "gap-4",
+              })}
+            >
+              <PostCard
+                title="Онлайн оплата"
+                description="15% моих клиентов хотят эквайринг, с его помощью я увеличу продажи"
+                count={89}
+                doThis
+              />
+              <PostCard
+                title="Долгая загрузка сайта"
+                description="Изображения много весят, их нужно оптимизировать"
+                count={23}
+              />
+              <PostCard
+                title="Темная тема"
+                description="Я вообще мимокрокодил"
+                count={1}
+                notThis
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -49,23 +83,65 @@ function Posts() {
 }
 
 function Description() {
+  const handleClick = () => {};
+
   return (
-    <div className="px-4 col-span-1 lg:col-span-6 flex flex-col gap-6 lg:gap-8 order-1 lg:order-2 text-center lg:text-left">
-      <h1 className="text-3xl lg:text-4xl lg:text-5xl leading-tight font-extrabold">
-        Делай то, что <span className="text-primary">реально </span> хотят твои
-        клиенты
+    <div
+      className={classify({
+        layout: "order-1 col-span-1 flex flex-col lg:order-2 lg:col-span-6",
+        spacing: "gap-6 lg:gap-8",
+        padding: "px-4",
+        alignment: "text-center lg:text-left",
+      })}
+    >
+      <h1
+        className={classify({
+          typography:
+            "text-3xl font-extrabold leading-tight md:text-4xl lg:text-5xl",
+        })}
+      >
+        Делай то, что{" "}
+        <span className={classify({ colors: "text-primary" })}>реально </span>{" "}
+        хотят твои клиенты
       </h1>
 
-      <p className="text-base lg:text-lg text-slate-500 pb-2 lg:pb-4 leading-relaxed">
+      <p
+        className={classify({
+          spacing: "pb-2 lg:pb-4",
+          typography: "text-base leading-relaxed lg:text-lg",
+          colors: "text-slate-500",
+        })}
+      >
         Собирай отзывы от своих клиентов, правильно расставляй приоритеты и
         создавай продукт, который пользователи полюбят
       </p>
 
-      <div className="flex flex-col items-center lg:items-start gap-4">
-        <button className="w-full lg:w-fit btn h-fit btn-primary font-black text-base lg:text-lg bg-white text-base-100 border-none hover:bg-slate-100 hover:text-base-100 px-4 lg:px-6 pt-3 pb-4">
+      <div
+        className={classify({
+          layout: "flex flex-col",
+          spacing: "gap-4",
+          alignment: "items-center lg:items-start",
+        })}
+      >
+        <button
+          onClick={handleClick}
+          className={classify({
+            layout: "btn btn-primary h-fit w-full lg:w-fit",
+            borders: "border-none",
+            colors:
+              "bg-white text-base-100 hover:bg-slate-100 hover:text-base-100",
+            padding: "px-4 pb-4 pt-3 lg:px-6",
+            typography: "text-base font-black lg:text-lg",
+          })}
+        >
           Собрать фидбэк бесплатно
         </button>
-        <p className="text-sm lg:text-base text-slate-500">
+        <p
+          className={classify({
+            typography: "text-sm lg:text-base",
+            colors: "text-slate-500",
+          })}
+        >
           Это 100% бесплатно. Серьезно.
         </p>
       </div>
@@ -77,25 +153,88 @@ type PostCardProps = {
   title: string;
   description: string;
   count: number;
+  doThis?: boolean;
+  notThis?: boolean;
 };
 
-export function PostCard({ title, description, count }: PostCardProps) {
+export function PostCard({
+  title,
+  description,
+  count,
+  doThis = false,
+  notThis = false,
+}: PostCardProps) {
   const [isUpvoted, setIsUpvoted] = useState(false);
 
   return (
     <div
-      className="flex flex-row bg-base-100 rounded-box p-4 lg:p-6 duration-200 hover:shadow-lg cursor-pointer justify-between items-start lg:items-center gap-4"
+      className={classify({
+        layout:
+          "relative flex flex-row items-start justify-between lg:items-center",
+        spacing: "gap-4",
+        padding: "p-4 lg:p-6",
+        colors: "bg-base-100",
+        borders: "rounded-box",
+        effects: "cursor-pointer hover:shadow-lg",
+        transitions: "duration-200",
+      })}
       title="Перейти к посту"
     >
+      {doThis && (
+        <div
+          className={classify({
+            layout: "absolute left-[60%] top-[-25px]",
+          })}
+        >
+          <Arrow
+            className={classify({
+              layout: "absolute left-[-30px] top-[30px] rotate-180",
+              sizes: "h-7 w-7",
+            })}
+          />
+          Делай это ✅
+        </div>
+      )}
+      {notThis && (
+        <div
+          className={classify({
+            layout: "absolute bottom-[-25px] left-[30%]",
+          })}
+        >
+          <Arrow
+            className={classify({
+              layout: "absolute right-[-30px] top-[-30px]",
+              sizes: "h-7 w-7",
+            })}
+          />
+          Не это ❌
+        </div>
+      )}
       <div>
-        <div className="font-bold mb-0.5 flex gap-4 items-start">{title}</div>
-        <div className="text-sm lg:text-base text-slate-500 leading-relaxed mb-2">
+        <div
+          className={classify({
+            layout: "flex items-start",
+            spacing: "mb-0.5 gap-4",
+            typography: "font-bold",
+          })}
+        >
+          {title}
+        </div>
+        <div
+          className={classify({
+            spacing: "mb-2",
+            typography: "text-sm leading-relaxed lg:text-base",
+            colors: "text-slate-500",
+          })}
+        >
           {description}
         </div>
       </div>
       <div
         onClick={() => setIsUpvoted(!isUpvoted)}
-        className="self-end lg:self-auto"
+        className={classify({
+          alignment: "self-end lg:self-auto",
+        })}
       >
         <UpvoteButton
           isUpvoted={isUpvoted}

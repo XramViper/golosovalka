@@ -6,7 +6,8 @@ import clsx from "clsx";
 import Providers from "@/config/Providers";
 
 const font = Geologica({
-  subsets: ["latin"],
+  subsets: ["cyrillic", "latin"],
+  // display: "swap",
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 

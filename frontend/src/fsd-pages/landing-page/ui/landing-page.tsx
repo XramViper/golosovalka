@@ -5,7 +5,9 @@ export const LandingPage = () => {
   return (
     <div className="bg-base-100">
       <div className="min-h-screen max-w-7xl mx-auto lg:px-4">
-        <HeroCard />
+        <div className="relative py-8">
+          <HeroCard />
+        </div>
 
         {/* Описание преимуществ */}
 

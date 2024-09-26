@@ -1,4 +1,4 @@
-import { TypewriterEffect } from "../typewriter-effect";
+import { TypewriterEffect } from "@/shared";
 import { classify } from "@/shared/styles/utils/classify";
 
 export function Title() {

@@ -14,19 +14,26 @@ export function SmoothScroll({ children }: Props) {
 
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
       if (contentRef.current) {
         setContentHeight(contentRef.current.scrollHeight);
       }
+      setWindowHeight(window.innerHeight);
     };
 
     handleResize();
-  }, [contentRef]);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const y = useTransform(smoothProgress, (value) => {
-    return value * -(contentHeight - window.innerHeight);
+    return value * -(contentHeight - windowHeight);
   });
 
   return (

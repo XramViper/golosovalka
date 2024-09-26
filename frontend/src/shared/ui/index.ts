@@ -6,3 +6,4 @@ export * from "./logo";
 export * from "./toast";
 export * from "./arrow";
 export * from "./smooth-scroll";
+export * from "./typewriter-effect";

@@ -22,7 +22,7 @@ export function HeroTitleSection() {
       <h1
         className={classify({
           typography:
-            "text-3xl font-extrabold leading-tight md:text-4xl lg:text-5xl",
+            "text-3xl font-extrabold md:text-4xl lg:text-5xl !leading-tight",
         })}
       >
         Делай то, что{" "}

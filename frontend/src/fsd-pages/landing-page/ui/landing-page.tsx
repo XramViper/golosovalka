@@ -1,4 +1,4 @@
-import { HeroCard, ProblemSection } from "@/features";
+import { FeaturesSection, HeroCard, ProblemSection } from "@/features";
 import { SmoothScroll } from "@/shared";
 import React from "react";
 
@@ -8,10 +8,7 @@ export const LandingPage = () => {
       <SmoothScroll>
         <HeroCard />
         <ProblemSection />
-        {/* Описание преимуществ */}
-
-        {/* Как работает */}
-
+        <FeaturesSection />
         {/* Отзывы */}
 
         {/* FAQ */}

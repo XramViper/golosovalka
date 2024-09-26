@@ -1,26 +1,23 @@
-import { HeroCard } from "@/features";
+import { HeroCard, ProblemSection } from "@/features";
 import React from "react";
 
 export const LandingPage = () => {
   return (
     <div className="bg-base-100">
-      <div className="min-h-screen max-w-7xl mx-auto lg:px-4">
-        <div className="relative py-8">
-          <HeroCard />
-        </div>
+      <HeroCard />
 
-        {/* Описание преимуществ */}
+      <ProblemSection />
+      {/* Описание преимуществ */}
 
-        {/* Как работает */}
+      {/* Как работает */}
 
-        {/* Отзывы */}
+      {/* Отзывы */}
 
-        {/* FAQ */}
+      {/* FAQ */}
 
-        {/* Использовать */}
+      {/* Использовать */}
 
-        {/* Футер */}
-      </div>
+      {/* Футер */}
     </div>
   );
 };

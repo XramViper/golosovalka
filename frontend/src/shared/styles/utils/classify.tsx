@@ -27,6 +27,10 @@ export function classify(styles: TailwindStyles): string {
     "transitions",
     "sizes",
     "other",
+    "position",
+    "transform",
+    "parallax",
+    "zIndex",
   ];
 
   return classGroups
@@ -47,6 +51,10 @@ interface TailwindStyles {
   borders?: string;
   effects?: string;
   transitions?: string;
+  position?: string;
+  zIndex?: string;
   sizes?: string;
+  transform?: string;
+  parallax?: string;
   other?: string;
 }

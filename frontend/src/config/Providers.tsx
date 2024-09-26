@@ -3,6 +3,7 @@
 import { getQueryClient } from "@/shared/server/helpers/getQueryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { SessionProvider } from "next-auth/react";
+import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,6 +17,18 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     warning: "bg-base-300",
     default: "bg-base-300",
   };
+
+  useEffect(() => {
+    const updateScroll = () => {
+      document.documentElement.style.setProperty(
+        "--scroll",
+        window.pageYOffset + "px",
+      );
+    };
+    window.addEventListener("scroll", updateScroll);
+    updateScroll();
+    return () => window.removeEventListener("scroll", updateScroll);
+  }, []);
 
   return (
     <SessionProvider>

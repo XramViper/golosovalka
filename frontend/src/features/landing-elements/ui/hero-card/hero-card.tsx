@@ -8,7 +8,8 @@ export const HeroCard = () => {
   return (
     <div
       className={classify({
-        layout: "mx-auto grid grid-cols-1 max-lg:max-w-xl lg:grid-cols-12",
+        layout:
+          "mx-auto grid min-h-[calc(100vh-10rem)] max-w-7xl grid-cols-1 max-lg:max-w-xl lg:grid-cols-12",
         spacing: "gap-8 md:gap-16 lg:gap-10",
         padding: "py-8 md:py-16 lg:py-24",
         height: "min-h-[calc(100vh-10rem)]",

@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .parallax {
+    @apply will-change-transform;
+  }
+}
+
+html {
+  --scroll: 0px;
+}
+
+html body {
+  background-attachment: fixed;
+}

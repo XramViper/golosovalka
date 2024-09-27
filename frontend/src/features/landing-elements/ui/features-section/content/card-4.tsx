@@ -20,11 +20,24 @@ export function Card4() {
  */
 function Content() {
   return (
-    <div className="flex w-full max-w-[600px] flex-col gap-4 overflow-hidden px-6">
-      <VoteCard title="🎥 Youtube Канал" />
-      <VoteCard title="🍔 Бар «Carolina Reaper»" />
-      <VoteCard title="🎁 Что подарить на День Рождения?" />
-      <VoteCard title=".. Еще что-то" />
+    <div className="relative h-[300px] overflow-hidden">
+      <div className="flex w-full max-w-[600px] flex-col gap-4 px-6 transition-transform duration-1000 ease-in-out group-hover:-translate-y-[800px]">
+        <VoteCard title="🎥 Youtube Канал" />
+        <VoteCard title="🎵 Плейлист для вечеринки" />
+        <VoteCard title="🎁 Что подарить на День Рождения?" />
+        <VoteCard title="🏋️ Фитнес челлендж" />
+        <VoteCard title="🏠 Ремонт в квартире" />
+        <VoteCard title="🍕 Меню для пиццерии" />
+        <VoteCard title="📚 Книжный клуб" />
+        <VoteCard title="🍔 Бар «Carolina Reaper»" />
+        <VoteCard title="🎮 Игровой стрим" />
+        <VoteCard title="🎨 Дизайн логотипа" />
+        <VoteCard title="🌱 Эко-инициатива" />
+        <VoteCard title="🐾 Приют для животных" />
+        <div className="text-center font-bold text-slate-500 py-4">
+          ... сколько хочешь!
+        </div>
+      </div>
     </div>
   );
 }
@@ -35,7 +48,7 @@ interface VoteCardProps {
 
 function VoteCard({ title }: VoteCardProps) {
   return (
-    <div className="rounded-lg bg-base-200 p-4">
+    <div className="rounded-lg bg-base-300 p-4">
       <h3 className="mb-2 font-semibold">{title}</h3>
     </div>
   );

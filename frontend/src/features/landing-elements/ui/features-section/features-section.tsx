@@ -22,7 +22,7 @@ export function FeaturesSection() {
         className={classify({
           layout: "mx-auto",
           borders: "rounded-t-[100px]",
-          colors: "bg-base-100",
+          colors: "bg-base-300",
           padding: "px-24 py-48",
         })}
       >

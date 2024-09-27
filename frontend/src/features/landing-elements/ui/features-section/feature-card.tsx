@@ -21,7 +21,7 @@ export function FeatureCard({
         layout: "flex flex-col",
         spacing: "gap-6",
         sizes: "h-[22rem] w-full xl:h-[25rem]",
-        colors: "border border-white/10 text-primary-content",
+        colors: "border border-white/5 bg-white/5 text-primary-content",
         borders: "rounded-3xl",
         effects: "overflow-hidden",
         padding: "pt-6",

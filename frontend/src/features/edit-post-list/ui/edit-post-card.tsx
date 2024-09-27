@@ -1,7 +1,6 @@
 "use client";
 
 import { Board } from "@/entities/board/api/get-info-by-id/types";
-import { PostLink } from "./post-link";
 import { PostStatus } from "./post-status";
 import { PostAdditionalInfo } from "./post-additional-info";
 import { PostContent } from "./post-content";
@@ -42,7 +41,7 @@ export function EditPostCard({ post, boardId }: Props) {
   };
 
   return (
-    <div className="bg-base-100 p-6 rounded-box flex justify-between items-start">
+    <div className="flex items-start justify-between rounded-box bg-base-100 p-6">
       <div className="w-full">
         <div className="mb-3">
           <PostTitle title={post.title} />
@@ -53,17 +52,14 @@ export function EditPostCard({ post, boardId }: Props) {
           commentsCount={post.comments}
         />
       </div>
-      <div className="w-[0px] bg-base-300 h-full mx-6"></div>
-      <div className="w-38 shrink-0 flex flex-col gap-2">
+      <div className="mx-6 h-full w-[0px] bg-base-300"></div>
+      <div className="w-38 flex shrink-0 flex-col gap-2">
         <PostStatus
           onChange={handleStatusChange}
           status={post.status}
           disabled={isUpdatePending}
         />
-        <PostLink
-          boardTranslitedTitle={boardId}
-          postTranslitedTitle={post.translitted_title}
-        />
+
         <DeleteButton
           onClick={handleDelete}
           disabled={isDeletePending}

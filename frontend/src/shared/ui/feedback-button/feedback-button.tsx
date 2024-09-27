@@ -1,9 +1,11 @@
+import Link from "next/link";
+
 export const FeedbackButton = () => {
   return (
     <div>
-      <a className="btn btn-ghost" href="b/feedback" target="_blank">
+      <Link className="btn btn-ghost" href="/b/golosovalka" target="_blank">
         💡 Есть предложения?
-      </a>
+      </Link>
     </div>
   );
 };

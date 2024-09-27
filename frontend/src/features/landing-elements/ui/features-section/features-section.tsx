@@ -31,11 +31,11 @@ export function FeaturesSection() {
 
   return (
     <section className="bg-base-300 py-16">
-      <div className="mx-auto rounded-t-[100px] bg-base-100 py-48">
-        <h2 className="mb-12 text-center text-4xl font-bold">
+      <div className="mx-auto rounded-t-[100px] bg-base-100 px-24 py-48">
+        <h2 className="mb-12 text-center text-5xl font-bold">
           Делай то, что реально хотят твои клиенты
         </h2>
-        <div className="grid grid-cols-1 gap-8 px-24 md:grid-cols-6">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-6">
           <div
             className={classify({
               layout: "col-span-2",
@@ -50,8 +50,7 @@ export function FeaturesSection() {
           <div
             className={classify({
               layout: "col-span-4",
-              colors:
-                "rounded-3xl bg-primary p-12 text-base-content shadow-md",
+              colors: "rounded-3xl bg-base-300 p-12 text-base-content shadow-md",
               spacing: "mb-4",
             })}
           >
@@ -61,8 +60,7 @@ export function FeaturesSection() {
           <div
             className={classify({
               layout: "col-span-4",
-              colors:
-                "rounded-3xl bg-primary p-12 text-base-content shadow-md",
+              colors: "rounded-3xl bg-base-300 p-12 text-base-content shadow-md",
               spacing: "mb-4",
             })}
           >

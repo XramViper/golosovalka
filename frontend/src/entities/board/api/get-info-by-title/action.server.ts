@@ -18,7 +18,7 @@ export const actionServer = async (boardTitle: string): Promise<Response> => {
     try {
       const res = await getServerSession();
       currentUser = await User.findOne({ email: res?.user?.email }).then(
-        (user) => user
+        (user) => user,
       );
     } catch (error) {
       console.log("error", error);
@@ -46,20 +46,26 @@ export const actionServer = async (boardTitle: string): Promise<Response> => {
       isUpvoted: post.upvotes.includes(currentUser?._id),
     }));
 
+    const filteredPosts = mappedPosts.filter(
+      (post) => post.status !== "CLOSED" && post.status !== "DONE",
+    );
+
+    const postSortedByUpvotes = filteredPosts.sort(
+      (a, b) => b.upvotes - a.upvotes,
+    );
+
     const data: BoardType = {
       id: currentBoard._id as string,
       title: currentBoard.title,
       translittedTitle: currentBoard.translited_title,
-      posts: mappedPosts.filter(
-        (post) => post.status !== "CLOSED" && post.status !== "DONE"
-      ),
+      posts: postSortedByUpvotes,
     };
 
     return getSuccessResponse(data);
   } catch (error) {
     return await getErrorResponse(
       400,
-      `Ошибка получения информации о доске ${boardTitle}`
+      `Ошибка получения информации о доске ${boardTitle}`,
     );
   }
 };

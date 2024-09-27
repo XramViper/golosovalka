@@ -22,11 +22,11 @@ export function AddBoardForm() {
 
   return (
     <div className="col-span-full md:col-span-2">
-      <div className="p-8 rounded-box bg-base-100 min-h-0">
-        <form onSubmit={handleSubmit} className="space-y-8 w-full">
-          <h2 className="font-bold text-lg">
-            Делай только то, что твои пользователи{" "}
-            <span className="bg-neutral text-neutral-content px-1.5">
+      <div className="min-h-0 rounded-box bg-base-100 p-8">
+        <form onSubmit={handleSubmit} className="w-full space-y-8">
+          <h2 className="text-lg font-bold">
+            Делай только то, что твои пользователи
+            <span className="mx-1 bg-neutral px-1 text-neutral-content">
               реально
             </span>
             хотят
@@ -47,7 +47,7 @@ export function AddBoardForm() {
           <div className="space-y-2">
             <button
               disabled={isPending}
-              className="btn btn-primary group w-full"
+              className="group btn btn-primary w-full"
               type="submit"
             >
               Создать доску

@@ -26,7 +26,7 @@ function FeedbackList() {
         className="mb-2 duration-500 group-hover:-mt-36 group-hover:md:-mt-28"
       />
       <FeedbackItem
-        title="Новая таблица цен для тарифов с учетом использования"
+        title="Добавьте бот помошник на сайт"
         description="Возможно, стоит это сделать 🤔"
         votes={12}
         isVoted={false}

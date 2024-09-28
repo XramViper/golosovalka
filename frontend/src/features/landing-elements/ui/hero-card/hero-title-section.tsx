@@ -1,5 +1,6 @@
 "use client";
 
+import { CTAButton } from "@/shared";
 import { classify } from "@/shared/styles/utils/classify";
 import { useRouter } from "next/navigation";
 
@@ -22,7 +23,7 @@ export function HeroTitleSection() {
       <h1
         className={classify({
           typography:
-            "text-3xl font-extrabold md:text-4xl lg:text-5xl !leading-tight",
+            "text-3xl font-extrabold !leading-tight md:text-4xl lg:text-5xl",
         })}
       >
         Делай то, что{" "}
@@ -48,19 +49,7 @@ export function HeroTitleSection() {
           alignment: "items-center lg:items-start",
         })}
       >
-        <button
-          onClick={handleClick}
-          className={classify({
-            layout: "btn btn-primary h-fit w-full lg:w-fit",
-            borders: "border-none",
-            colors:
-              "bg-white text-base-100 hover:bg-slate-100 hover:text-base-100",
-            padding: "px-4 pb-4 pt-3 lg:px-6",
-            typography: "text-base font-black lg:text-lg",
-          })}
-        >
-          Собрать фидбэк бесплатно
-        </button>
+        <CTAButton onClick={handleClick}>Собрать фидбек бесплатно</CTAButton>
         <p
           className={classify({
             typography: "text-sm lg:text-base",

@@ -7,3 +7,4 @@ export * from "./toast";
 export * from "./arrow";
 export * from "./smooth-scroll";
 export * from "./typewriter-effect";
+export * from "./cta-button";

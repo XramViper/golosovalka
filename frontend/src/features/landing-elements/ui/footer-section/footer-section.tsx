@@ -9,7 +9,7 @@ export const FooterSection = () => {
       className={classify({
         layout: "grid grid-cols-1 bg-base-300",
         spacing: "gap-8 md:gap-16 lg:gap-10",
-        padding: "py-8 md:py-12 lg:py-24",
+        padding: "py-8 md:py-12 lg:py-24 px-4",
         alignment: "place-items-center",
         position: "relative",
         borders: "border-t border-slate-800",
@@ -23,7 +23,7 @@ export const FooterSection = () => {
           Telegram
         </Link>
         <Link
-          href="/privacy-policy"
+          href="/privacy"
           className="flex text-white hover:text-gray-200"
         >
           Политика конфиденциальности

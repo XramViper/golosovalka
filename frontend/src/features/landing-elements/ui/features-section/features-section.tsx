@@ -29,7 +29,7 @@ export function FeaturesSection() {
         <h2
           className={classify({
             typography: "text-center text-5xl font-bold",
-            spacing: "mb-12",
+            spacing: "mb-24",
           })}
         >
           Делай то, что реально хотят твои клиенты

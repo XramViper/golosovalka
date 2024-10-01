@@ -12,7 +12,7 @@ export function HeroPosts() {
       >
         <div className="mockup-browser border border-base-300 bg-base-300">
           <div className="mockup-browser-toolbar">
-            <div className="input">golosovalka.com</div>
+            <div className="input">golosovalka.space</div>
           </div>
           <div className="flex justify-center bg-base-200">
             <div
